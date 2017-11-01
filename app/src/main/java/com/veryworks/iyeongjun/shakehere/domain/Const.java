@@ -39,19 +39,20 @@ public class Const {
 
     }
     public static class DefaultSetting{
-        public static final int DEFAULT_NUM_OF_ROWS = 40;
+        public static final int DEFAULT_NUM_OF_ROWS = 100;
         public static final String DEFAULT_MOBILE_OS = "AND";
         public static final String APP_NAME = "ShakeHere";
         public static final int DEFAULT_RADIUS = 5000;
         public static final String DEFAULT_TYPE = "json";
     }
     public static class ContentType{
-        public static final int TOUR = 76;
-        public static final int COULTURE = 78;
-        public static final int CANIVAL = 85;
-        public static final int REPORTS = 75;
-        public static final int INN = 80;
-        public static final int SHOPPING = 79;
+        public static final int TOUR = 12;
+        public static final int COULTURE = 14;
+        public static final int CANIVAL = 15;
+        public static final int REPORTS = 28;
+        public static final int INN = 32;
+        public static final int SHOPPING = 38;
+        public static final int FOOD = 39;
         public static final int ALL = 1000;
     }
     public static class AR{

@@ -3,16 +3,19 @@ package com.veryworks.iyeongjun.shakehere;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -20,6 +23,10 @@ import com.veryworks.iyeongjun.shakehere.Util.PermissionControl;
 import com.veryworks.iyeongjun.shakehere.domain.Const;
 import com.veryworks.iyeongjun.shakehere.domain.DataReceiver;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.veryworks.iyeongjun.shakehere.Util.PermissionControl.checkVersion;
@@ -27,10 +34,16 @@ import static com.veryworks.iyeongjun.shakehere.Util.PermissionControl.checkVers
 public class PagerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, PermissionControl.CallBack {
 
+    @BindView(R.id.tabLayout)
+    TabLayout tab;
+    @BindView(R.id.viewpager)
+    ViewPager pager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pager);
+        ButterKnife.bind(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -54,14 +67,6 @@ public class PagerActivity extends AppCompatActivity
 
         setView();
     }
-
-    /**
-     * http://api.visitkorea.or.kr/openapi/service/rest/KorService/locationBasedList?
-     * serviceKey=
-     * iMw%25252F5Z0wNdwfRXJ4HVyIGeMk316OS1Wtsw8v7ItPa3L%25252BcmRVKGv%25252BBB0k1rit2uwBOuoRnoYOL7%25252Bh6EIyblceCQ%25253D%25253D
-     * iMw%2F5Z0wNdwfRXJ4HVyIGeMk316OS1Wtsw8v7ItPa3L%2BcmRVKGv%2BBB0k1rit2uwBOuoRnoYOL7%2Bh6EIyblceCQ%3D%3D
-     * &numOfRows=10&MobileOS=AND&MobileApp=ShakeHere&mapX=37.515359&mapY=126.907623&radius=5000&_type=json
-     */
 
     @Override
     public void onBackPressed() {
@@ -118,10 +123,13 @@ public class PagerActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-    private void setView(){
+
+    private void setView() {
         DataReceiver dataReceiver = new DataReceiver(this);
-        dataReceiver.getTourDataDefault(Const.Lang.KOREAN,50, 37.515359, 126.907623);
+        dataReceiver.getTourDataDefault(Const.Lang.KOREAN, 37.515359, 126.907623);
+        setPager();
     }
+
     @Override
     public void init() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -136,4 +144,58 @@ public class PagerActivity extends AppCompatActivity
             w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
     }
+
+    public void setPager() {
+
+//        tab.addTab(tab.newTab().setIcon(tabIcions[0]));
+//        tab.addTab(tab.newTab().setIcon(tabIcions[1]));
+//        tab.addTab(tab.newTab().setIcon(tabIcions[2]));
+//        for (int i = 0; i < tabIcions.length; i++) {
+//            TabLayout.Tab tabs = tab.getTabAt(i);
+//            if (tabs != null) tabs.setCustomView(R.layout.icon_size);
+//        }
+//        tab.getTabAt(0).setIcon(R.drawable.term_icon);
+//        tab.getTabAt(1).setIcon(R.drawable.news_icon);
+//        tab.getTabAt(2).setIcon(R.drawable.weather_icon);
+        tab.addTab(tab.newTab().setText("1"));
+        tab.addTab(tab.newTab().setText("2"));
+        tab.addTab(tab.newTab().setText("3"));
+        tab.addTab(tab.newTab().setText("4"));
+        List<Fragment> datas = new ArrayList<>();
+
+        ListFragment listFragment = new ListFragment();
+        BubbleFragment bubbleFragment = new BubbleFragment();
+        MapFragment mapFragment = new MapFragment();
+        ARFragment arFragment = new ARFragment();
+
+        datas.add(listFragment);
+        datas.add(bubbleFragment);
+        datas.add(mapFragment);
+        datas.add(arFragment);
+
+        MyPagerAdapter adapter = new MyPagerAdapter(getSupportFragmentManager(), datas);
+        // 5. 아답터를 페이저 위젯에 연결
+        pager.setAdapter(adapter);
+        // 6. 페이저가 변경되었을 때 탭을 변경해주는 리스너
+        pager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tab));
+        // 7. 탭이 변경되었때 페이저를 변경해주는 리스너
+        tab.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(pager));
+        tab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tabs) {
+//                tabs.setIcon(tabClickIcons[tabs.getPosition()]);
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tabs) {
+//                tabs.setIcon(tabIcions[tabs.getPosition()]);
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+    }
+
 }
