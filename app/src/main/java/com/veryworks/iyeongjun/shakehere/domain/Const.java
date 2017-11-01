@@ -9,9 +9,8 @@ import java.net.URLEncoder;
 public class Const {
     public static class Auth{
         public static final String GOOGLE_MAP_KEY ="AIzaSyChOAuUgCbADQ5vcgzOloV0J6-SloAASWk";
-        public static final String KEY= "i9opnT0CNWj0dfjeUmoProOy3c%2BqZNdfztvalVl624EISpMpkXLDvVzwuuA8n8BnYnMqOjKlZIoBQLm%2FpX%2Fyqg%3D%3D";
-
-    }
+        public static final String KEY = "iMw%2F5Z0wNdwfRXJ4HVyIGeMk316OS1Wtsw8v7ItPa3L%2BcmRVKGv%2BBB0k1rit2uwBOuoRnoYOL7%2Bh6EIyblceCQ%3D%3D";
+                }
     public static class Status{
         public static final String SCREEN_ON = "Screen on";
         public static final String SCREEN_OFF = "Screen off";
@@ -47,5 +46,10 @@ public class Const {
     public static class ContentType{
         public static final int TOUR = 76;
         public static final int COULTURE = 78;
+        public static final int CANIVAL = 85;
+        public static final int REPORTS = 75;
+        public static final int INN = 80;
+        public static final int SHOPPING = 79;
+        public static final int ALL = 1000;
     }
 }

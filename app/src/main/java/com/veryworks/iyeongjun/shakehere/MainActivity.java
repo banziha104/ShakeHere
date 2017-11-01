@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.bumptech.glide.Glide;
 import com.veryworks.iyeongjun.shakehere.Util.PermissionControl;
 import com.veryworks.iyeongjun.shakehere.domain.Const;
 import com.veryworks.iyeongjun.shakehere.domain.DataReceiver;
@@ -22,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements PermissionControl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         DataReceiver dataReceiver = new DataReceiver(this);
-        dataReceiver.getTourData(Const.Lang.KOREAN,40,"",);
+        dataReceiver.getTourDataDefault(Const.Lang.KOREAN,10, 37.515359, 126.907623);
     }
 
     @Override
@@ -32,10 +33,11 @@ public class MainActivity extends AppCompatActivity implements PermissionControl
         } else {
             init();
         }
+
         ButterKnife.bind(this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window w = getWindow(); // in Activity's onCreate() for instance
             w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
     }
-}
+    }
