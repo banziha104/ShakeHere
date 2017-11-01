@@ -40,10 +40,11 @@ public class DataReceiver {
                 Const.DefaultSetting.DEFAULT_MOBILE_OS,
                 Const.DefaultSetting.APP_NAME,
                 contentType,
-                lat,
                 lon,
+                lat,
                 Const.DefaultSetting.DEFAULT_RADIUS,
-                Const.DefaultSetting.DEFAULT_TYPE);
+                Const.DefaultSetting.DEFAULT_TYPE,
+                StaticFields.CurrentPageNo);
         result.enqueue(new Callback<TourData>() {
             @Override
             public void onResponse(Call<TourData> call, Response<TourData> response) {
@@ -64,14 +65,15 @@ public class DataReceiver {
         InterfaceForTourdataWithOutContentType interfaceForTourdataWithOutContentType
                 = retrofit.create(InterfaceForTourdataWithOutContentType.class);
         Call<TourData> result = interfaceForTourdataWithOutContentType.getTourData(lang,
-                URLencoding(Const.Auth.KEY),
+                Const.Auth.KEY,
                 length,
                 Const.DefaultSetting.DEFAULT_MOBILE_OS,
                 Const.DefaultSetting.APP_NAME,
-                lat,
                 lon,
+                lat,
                 Const.DefaultSetting.DEFAULT_RADIUS,
-                Const.DefaultSetting.DEFAULT_TYPE);
+                Const.DefaultSetting.DEFAULT_TYPE,
+                StaticFields.CurrentPageNo);
         result.enqueue(new Callback<TourData>() {
             @Override
             public void onResponse(Call<TourData> call, Response<TourData> response) {
@@ -91,7 +93,7 @@ public class DataReceiver {
     interface InterfaceForTourdata{
         @GET("/openapi/service/rest/{lang}/locationBasedList")
         Call<TourData> getTourData(@Path("lang") String Lang,
-                                   @Query("serviceKey") String key,
+                                   @Query(value = "serviceKey",encoded = true) String key,
                                    @Query("numOfRows") int numOfPage,
                                    @Query("MobileOS") String mobileOS,
                                    @Query("MobileApp") String mobileApp,
@@ -99,20 +101,22 @@ public class DataReceiver {
                                    @Query("mapX") double mapX,
                                    @Query("mapY") double mapY,
                                    @Query("radius") int radius,
-                                   @Query("_type") String type
+                                   @Query("_type") String type,
+                                   @Query("pageNo") int Pageno
                                    );
     }
     interface InterfaceForTourdataWithOutContentType{
         @GET("/openapi/service/rest/{lang}/locationBasedList")
         Call<TourData> getTourData(@Path("lang") String Lang,
-                                   @Query("serviceKey") String key,
+                                   @Query(value = "serviceKey", encoded = true) String key,
                                    @Query("numOfRows") int numOfPage,
                                    @Query("MobileOS") String mobileOS,
                                    @Query("MobileApp") String mobileApp,
                                    @Query("mapX") double mapX,
                                    @Query("mapY") double mapY,
                                    @Query("radius") int radius,
-                                   @Query("_type") String type
+                                   @Query("_type") String type,
+                                   @Query("pageNo") int Pageno
         );
     }
     private String URLencoding(String key){
@@ -126,21 +130,12 @@ public class DataReceiver {
         return null;
     }
 
-    /**
-     * http://api.visitkorea.or.kr/openapi/service/rest/KorService/
-     * locationBasedList?numOfRows=40&MobileOS=AND&MobileApp=ShakeHere&
-     * serviceKey=i9opnT0CNWj0dfjeUmoProOy3c%252BqZNdfztvalVl624EISpMpkXLDvVzwuuA8n8BnYnMqOjKlZIoBQLm%252FpX%252Fyqg%253D%253D
-     * &mapX=37.515359&mapY=126.907623&radius=5000&_type=json
-     *
-     *http://api.visitkorea.or.kr/openapi/service/rest/EngService/
-     * locationBasedList?
-     * i9opnT0CNWj0dfjeUmoProOy3c%252BqZNdfztvalVl624EISpMpkXLDvVzwuuA8n8BnYnMqOjKlZIoBQLm%252FpX%252Fyqg%253D%253D
-     * serviceKey=i9opnT0CNWj0dfjeUmoProOy3c%2BqZNdfztvalVl624EISpMpkXLDvVzwuuA8n8BnYnMqOjKlZIoBQLm%2FpX%2Fyqg%3D%3D&numOfRows=10&pageSize=10&pageNo=1&startPage=1&MobileOS=ETC&MobileApp=AppTest&listYN=Y&arrange=A&contentTypeId=82&mapX=126.981611&mapY=37.568477&radius=500
-     * serviceKey=i9opnT0CNWj0dfjeUmoProOy3c%25252BqZNdfztvalVl624EISpMpkXLDvVzwuuA8n8BnYnMqOjKlZIoBQLm%25252FpX%25252Fyqg
-     * http://api.visitkorea.or.kr/openapi/service/rest/KorService/locationBasedList
-     * ?serviceKey=i9opnT0CNWj0dfjeUmoProOy3c%25252BqZNdfztvalVl624EISpMpkXLDvVzwuuA8n8BnYnMqOjKlZIoBQLm%25252FpX%25252Fyqg%25253D%25253D&numOfRows=10&MobileOS=AND&MobileApp=ShakeHere&mapX=37.515359&mapY=126.907623&radius=5000&_type=json
-     */
+    private void ifSeccess(Response<TourData> response){
+        Item[] items = response.body().getResponse().getBody().getItems().getItem();
+        for(int i = 0 ; i < items.length ; i ++){
 
+        }
+    }
     interface AdapterCallback{
         void AdapterCallback();
     }

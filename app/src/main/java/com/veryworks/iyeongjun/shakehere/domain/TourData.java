@@ -3,35 +3,24 @@ package com.veryworks.iyeongjun.shakehere.domain;
 /**
  * Created by iyeongjun on 2017. 10. 31..
  */
+
 public class TourData
 {
-    private Records[] records;
+    private Response response;
 
-    private Fields[] fields;
-
-    public Records[] getRecords ()
+    public Response getResponse ()
     {
-        return records;
+        return response;
     }
 
-    public void setRecords (Records[] records)
+    public void setResponse (Response response)
     {
-        this.records = records;
-    }
-
-    public Fields[] getFields ()
-    {
-        return fields;
-    }
-
-    public void setFields (Fields[] fields)
-    {
-        this.fields = fields;
+        this.response = response;
     }
 
     @Override
     public String toString()
     {
-        return "ClassPojo [records = "+records+", fields = "+fields+"]";
+        return "ClassPojo [response = "+response+"]";
     }
 }

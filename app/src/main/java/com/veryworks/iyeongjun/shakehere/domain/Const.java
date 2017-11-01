@@ -9,7 +9,9 @@ import java.net.URLEncoder;
 public class Const {
     public static class Auth{
         public static final String GOOGLE_MAP_KEY ="AIzaSyChOAuUgCbADQ5vcgzOloV0J6-SloAASWk";
-        public static final String KEY = "iMw%2F5Z0wNdwfRXJ4HVyIGeMk316OS1Wtsw8v7ItPa3L%2BcmRVKGv%2BBB0k1rit2uwBOuoRnoYOL7%2Bh6EIyblceCQ%3D%3D";
+        public static final String KEY = "i9opnT0CNWj0dfjeUmoProOy3c%2BqZNdfztvalVl624EISpMpkXLDvVzwuuA8n8BnYnMqOjKlZIoBQLm%2FpX%2Fyqg%3D%3D";
+        //                    serviceKey= iMw%2F5Z0wNdwfRXJ4HVyIGeMk316OS1Wtsw8v7ItPa3L%2BcmRVKGv%2BBB0k1rit2uwBOuoRnoYOL7%2Bh6EIyblceCQ%3D%3D&numOfRows=10&MobileOS=AND&MobileApp=ShakeHere&mapX=37.515359&mapY=126.907623&radius=5000&_type=json
+        public static final String GOD = "IMw%2F";
                 }
     public static class Status{
         public static final String SCREEN_ON = "Screen on";
@@ -37,7 +39,7 @@ public class Const {
 
     }
     public static class DefaultSetting{
-        public static final int DEFAULT_NUM_OF_ROWS = 50;
+        public static final int DEFAULT_NUM_OF_ROWS = 40;
         public static final String DEFAULT_MOBILE_OS = "AND";
         public static final String APP_NAME = "ShakeHere";
         public static final int DEFAULT_RADIUS = 5000;
@@ -51,5 +53,15 @@ public class Const {
         public static final int INN = 80;
         public static final int SHOPPING = 79;
         public static final int ALL = 1000;
+    }
+    public static class AR{
+        public final static int REQUEST_CAMERA_PERMISSIONS_CODE = 11;
+        public static final int REQUEST_LOCATION_PERMISSIONS_CODE = 0;
+
+        public static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 0; // 10 meters
+        public static final long MIN_TIME_BW_UPDATES = 0;//1000 * 60 * 1; // 1 minute
+
+        public static final boolean IN_IMAGE = true;
+        public static final boolean OUT_IMAGE = false;
     }
 }

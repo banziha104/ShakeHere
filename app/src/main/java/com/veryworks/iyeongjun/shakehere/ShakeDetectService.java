@@ -89,7 +89,7 @@ public class ShakeDetectService extends Service implements DisplayReceiver.Shake
     }
 
     private void startBannerActivity() {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, PagerActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }

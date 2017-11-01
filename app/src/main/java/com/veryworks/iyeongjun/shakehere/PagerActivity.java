@@ -1,5 +1,6 @@
 package com.veryworks.iyeongjun.shakehere;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,9 +13,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
+
+import com.veryworks.iyeongjun.shakehere.Util.PermissionControl;
+import com.veryworks.iyeongjun.shakehere.domain.Const;
+import com.veryworks.iyeongjun.shakehere.domain.DataReceiver;
+
+import butterknife.ButterKnife;
+
+import static com.veryworks.iyeongjun.shakehere.Util.PermissionControl.checkVersion;
 
 public class PagerActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, PermissionControl.CallBack {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +51,17 @@ public class PagerActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        setView();
     }
+
+    /**
+     * http://api.visitkorea.or.kr/openapi/service/rest/KorService/locationBasedList?
+     * serviceKey=
+     * iMw%25252F5Z0wNdwfRXJ4HVyIGeMk316OS1Wtsw8v7ItPa3L%25252BcmRVKGv%25252BBB0k1rit2uwBOuoRnoYOL7%25252Bh6EIyblceCQ%25253D%25253D
+     * iMw%2F5Z0wNdwfRXJ4HVyIGeMk316OS1Wtsw8v7ItPa3L%2BcmRVKGv%2BBB0k1rit2uwBOuoRnoYOL7%2Bh6EIyblceCQ%3D%3D
+     * &numOfRows=10&MobileOS=AND&MobileApp=ShakeHere&mapX=37.515359&mapY=126.907623&radius=5000&_type=json
+     */
 
     @Override
     public void onBackPressed() {
@@ -54,7 +75,6 @@ public class PagerActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.pager, menu);
         return true;
     }
@@ -63,7 +83,7 @@ public class PagerActivity extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+        // as you specify a parent activity in AndroidManifest.xml.d
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
@@ -97,5 +117,23 @@ public class PagerActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    private void setView(){
+        DataReceiver dataReceiver = new DataReceiver(this);
+        dataReceiver.getTourDataDefault(Const.Lang.KOREAN,50, 37.515359, 126.907623);
+    }
+    @Override
+    public void init() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            checkVersion(this);
+        } else {
+            init();
+        }
+
+        ButterKnife.bind(this);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            Window w = getWindow(); // in Activity's onCreate() for instance
+            w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        }
     }
 }
