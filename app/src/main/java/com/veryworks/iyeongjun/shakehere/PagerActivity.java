@@ -44,6 +44,18 @@ public class PagerActivity extends AppCompatActivity
     @BindView(R.id.viewpager)
     ViewPager pager;
     BubbleFragment bubbleFragment;
+    private int[] tabIcons = {
+            R.drawable.list_icon,
+            R.drawable.tag_icon,
+            R.drawable.map_icon,
+            R.drawable.ar_clicked
+    };
+    private int[] tabClickedIcons = {
+            R.drawable.list_clicked,
+            R.drawable.tag_clicked,
+            R.drawable.map_clicked,
+            R.drawable.ar_clicked
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +75,6 @@ public class PagerActivity extends AppCompatActivity
                 bubblePicker.setVisibility(View.VISIBLE);
                 invalidateOptionsMenu();
             }
-
             public void onDrawerOpened(View drawerView) {
                 bubblePicker.setVisibility(View.INVISIBLE);
                 invalidateOptionsMenu();
@@ -145,20 +156,10 @@ public class PagerActivity extends AppCompatActivity
 
         Log.d("ARPOINT",currentUserLocation.getLatitude()+"/"+currentUserLocation.getLongitude());
 
-//        tab.addTab(tab.newTab().setIcon(tabIcions[0]));
-//        tab.addTab(tab.newTab().setIcon(tabIcions[1]));
-//        tab.addTab(tab.newTab().setIcon(tabIcions[2]));
-//        for (int i = 0; i < tabIcions.length; i++) {
-//            TabLayout.Tab tabs = tab.getTabAt(i);
-//            if (tabs != null) tabs.setCustomView(R.layout.icon_size);
-//        }
-//        tab.getTabAt(0).setIcon(R.drawable.term_icon);
-//        tab.getTabAt(1).setIcon(R.drawable.news_icon);
-//        tab.getTabAt(2).setIcon(R.drawable.weather_icon);
-        tab.addTab(tab.newTab().setText("1"));
-        tab.addTab(tab.newTab().setText("2"));
-        tab.addTab(tab.newTab().setText("3"));
-        tab.addTab(tab.newTab().setText("4"));
+        tab.addTab(tab.newTab().setIcon(tabIcons[0]));
+        tab.addTab(tab.newTab().setIcon(tabIcons[1]));
+        tab.addTab(tab.newTab().setIcon(tabIcons[2]));
+        tab.addTab(tab.newTab().setIcon(tabIcons[3]));
         List<Fragment> datas = new ArrayList<>();
 
         ListFragment listFragment = new ListFragment();
@@ -181,12 +182,12 @@ public class PagerActivity extends AppCompatActivity
         tab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tabs) {
-//                tabs.setIcon(tabClickIcons[tabs.getPosition()]);
+                tabs.setIcon(tabClickedIcons[tabs.getPosition()]);
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tabs) {
-//                tabs.setIcon(tabIcions[tabs.getPosition()]);
+                tabs.setIcon(tabIcons[tabs.getPosition()]);
             }
 
             @Override

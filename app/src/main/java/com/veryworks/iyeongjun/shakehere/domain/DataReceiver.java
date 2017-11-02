@@ -129,7 +129,13 @@ public class DataReceiver {
         Item[] items = response.body().getResponse().getBody().getItems().getItem();
         for(int i = 0 ; i < items.length ; i ++){
             datas.add(items[i]);
-            Log.d("Data",i+datas.get(i).getTitle()+"/"
+            Log.d("Data",i+datas.get(i).getTitle()+"/"+
+                    i+datas.get(i).getTel()+"/"+
+                    i+datas.get(i).getSigungucode()+"/"+
+                    i+datas.get(i).getDist()+"/"+
+                    i+datas.get(i).getFirstimage()+"/"+
+                    i+datas.get(i).getFirstimage2()+"/"+
+                    i+datas.get(i).getTel()+"/"
                     +datas.get(i).getContenttypeid());
             currentPageNo += 100;
             if(context instanceof CompleteData && i < 20) setUrlImage(items[i]);
