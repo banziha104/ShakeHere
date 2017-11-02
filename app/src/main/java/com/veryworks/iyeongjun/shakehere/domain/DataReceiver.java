@@ -1,8 +1,11 @@
 package com.veryworks.iyeongjun.shakehere.domain;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.widget.Toast;
+
+import com.veryworks.iyeongjun.shakehere.Util.UserLocation;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -17,6 +20,7 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 import static com.veryworks.iyeongjun.shakehere.domain.StaticData.datas;
+import static com.veryworks.iyeongjun.shakehere.domain.StaticData.drawables;
 import static com.veryworks.iyeongjun.shakehere.domain.StaticFields.currentPageNo;
 
 /**
@@ -32,6 +36,8 @@ public class DataReceiver {
     }
 
     public void getTourData(String lang, int contentType, double lat, double lon){
+        UserLocation userLocation = new UserLocation(context);
+        userLocation.getLocation();
         retrofit = new Retrofit.Builder()
                 .baseUrl("http://api.visitkorea.or.kr")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -81,16 +87,11 @@ public class DataReceiver {
         result.enqueue(new Callback<TourData>() {
             @Override
             public void onResponse(Call<TourData> call, Response<TourData> response) {
-                Log.d("Data",response.body().toString());
-                Log.d("Data",response.headers().toString());
-                Log.d("Data",response.toString());
                 ifSeccess(response);
-
             }
 
             @Override
             public void onFailure(Call<TourData> call, Throwable t) {
-                Log.d("Data",t.getMessage());
             }
         });
     }
@@ -132,6 +133,7 @@ public class DataReceiver {
             Log.d("Data",i+datas.get(i).getTitle()+"/"
                     +datas.get(i).getContenttypeid());
             currentPageNo += 100;
+            if(context instanceof CompleteData && i < 20) setUrlImage(items[i]);
         }
         if (context instanceof CompleteData){
             ((CompleteData)context).dataReceieveComplete();
@@ -141,8 +143,13 @@ public class DataReceiver {
             Toast.makeText(context, "not callback", Toast.LENGTH_SHORT).show();
         }
     }
+
+    public void setUrlImage(Item item){
+        drawables.add(((CompleteData)context).setImage(item.getFirstimage()));
+    }
     public interface CompleteData{
         void dataReceieveComplete();
+        Drawable setImage(String url);
     }
 
 //    interface InterfaceForGetSeoulData{

@@ -32,7 +32,7 @@ import butterknife.ButterKnife;
 import static com.veryworks.iyeongjun.shakehere.Util.PermissionControl.checkVersion;
 
 public class PagerActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, PermissionControl.CallBack {
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.tabLayout)
     TabLayout tab;
@@ -130,20 +130,6 @@ public class PagerActivity extends AppCompatActivity
         setPager();
     }
 
-    @Override
-    public void init() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            checkVersion(this);
-        } else {
-            init();
-        }
-
-        ButterKnife.bind(this);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            Window w = getWindow(); // in Activity's onCreate() for instance
-            w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-        }
-    }
 
     public void setPager() {
 

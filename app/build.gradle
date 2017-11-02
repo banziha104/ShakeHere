@@ -30,7 +30,7 @@ dependencies {
     //레트로핏
     //Gson 컨버터
     //Gson
-
+    compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.tsengvn:Typekit:1.0.0'
     compile 'com.squareup:seismic:1.0.2'
     compile 'com.github.igalata:Bubble-Picker:v0.2.4'

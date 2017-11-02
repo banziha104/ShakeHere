@@ -6,8 +6,17 @@
     android:layout_height="match_parent"
     tools:context="com.veryworks.iyeongjun.shakehere.SplashActivity">
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Splash"/>
+        android:layout_width="0dp"
+        android:layout_height="495dp"
+        android:text="Splash"
+        tools:layout_editor_absoluteY="8dp"
+        tools:layout_editor_absoluteX="8dp" />
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/tempImage"
+        android:visibility="visible"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="0dp" />
 
 </android.support.constraint.ConstraintLayout>
