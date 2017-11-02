@@ -13,6 +13,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.veryworks.iyeongjun.shakehere.domain.Const;
+import com.veryworks.iyeongjun.shakehere.domain.DataReceiver;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -37,6 +38,7 @@ public class UserLocation {
     boolean isGPSEnabled;
     boolean isNetworkEnabled;
     boolean locationServiceEnabled;
+    boolean isOnceGoMain = false;
     Context context;
     Geocoder geocoder;
     Retrofit retrofit;
@@ -86,6 +88,11 @@ public class UserLocation {
             Log.d("LOCATION Confirm", location.getLatitude()+" / "+location.getLongitude()+" / " +location.getAccuracy() );
             String tempLocation = location.getLatitude()+","+location.getLongitude();
             reverseGeocoder(tempLocation);
+            DataReceiver dataReceiver = new DataReceiver(context);
+            dataReceiver.getTourDataDefault(Const.Lang.KOREAN,
+                    currentUserLocation.getLatitude(),
+                    currentUserLocation.getLongitude()
+                    );
         }
 
         @Override
@@ -188,6 +195,15 @@ public class UserLocation {
             }
         }
         return myDivision;
+    }
+    private void redirectToMain(){
+        if(context instanceof goMain){
+            ((goMain)context).redirectMain();
+            isOnceGoMain = true;
+        }
+    }
+    public interface goMain{
+        void redirectMain();
     }
 
     class MyDivision{

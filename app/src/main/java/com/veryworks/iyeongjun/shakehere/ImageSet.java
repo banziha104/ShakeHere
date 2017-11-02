@@ -7,4 +7,5 @@ package com.veryworks.iyeongjun.shakehere;
 public interface ImageSet {
     void setInImage();
     void setOutImage();
+    void clickARiamge();
 }

@@ -12,31 +12,38 @@ import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 import com.veryworks.iyeongjun.shakehere.Util.PermissionControl;
+import com.veryworks.iyeongjun.shakehere.Util.UserLocation;
 import com.veryworks.iyeongjun.shakehere.domain.Const;
 import com.veryworks.iyeongjun.shakehere.domain.DataReceiver;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.subjects.Subject;
 
 import static com.veryworks.iyeongjun.shakehere.Util.PermissionControl.checkVersion;
+import static com.veryworks.iyeongjun.shakehere.Util.UserLocation.currentUserLocation;
 import static com.veryworks.iyeongjun.shakehere.domain.StaticData.datas;
 
-public class SplashActivity extends AppCompatActivity implements DataReceiver.CompleteData, PermissionControl.CallBack {
+public class SplashActivity extends AppCompatActivity implements DataReceiver.CompleteData
+        , PermissionControl.CallBack{
 
     @BindView(R.id.tempImage) ImageView tempImage;
-
+    UserLocation userLocation = new UserLocation(this);
+    DataReceiver dataReceiver = new DataReceiver(this);
+    boolean isDataReceiev = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         ButterKnife.bind(this);
-        DataReceiver dataReceiver = new DataReceiver(this);
-        dataReceiver.getTourDataDefault(Const.Lang.KOREAN, 37.515359, 126.907623);
+
+        UserLocation userLocation = new UserLocation(this);
+        userLocation.getLocation();
     }
 
     @Override
     public void dataReceieveComplete() {
-        Intent intent = new Intent(SplashActivity.this, PagerActivity.class);
+        Intent intent = new Intent(SplashActivity.this,PagerActivity.class);
         startActivity(intent);
     }
 
@@ -45,6 +52,7 @@ public class SplashActivity extends AppCompatActivity implements DataReceiver.Co
         Picasso.with(this).load(url).into(tempImage);
         return tempImage.getDrawable();
     }
+
 
     @Override
     public void init() {

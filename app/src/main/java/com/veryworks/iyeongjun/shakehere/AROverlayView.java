@@ -17,12 +17,15 @@ import android.widget.Toast;
 import com.veryworks.iyeongjun.shakehere.domain.ARPoint;
 import com.veryworks.iyeongjun.shakehere.domain.Const;
 import com.veryworks.iyeongjun.shakehere.Helper.LocationHelper;
+import com.veryworks.iyeongjun.shakehere.domain.Item;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import static com.veryworks.iyeongjun.shakehere.domain.StaticData.datas;
 
 
 /**
@@ -39,6 +42,7 @@ public class AROverlayView extends View implements ARActivity.CheckView, ARActiv
     private DisplayMetrics dm = getResources().getDisplayMetrics();
     int width = dm.widthPixels;
     int height = dm.heightPixels;
+    int curPos = 1;
     boolean[] arr;
     boolean[] temparr;
     Timer timer;
@@ -51,7 +55,7 @@ public class AROverlayView extends View implements ARActivity.CheckView, ARActiv
         imageSet.setOutImage();
         imageSet.setInImage();
         imageSet.setOutImage();
-
+        setArPoints(datas);
         //Demo points
         arr = new boolean[arPoints.size()];
         temparr = new boolean[arPoints.size()];
@@ -157,7 +161,25 @@ public class AROverlayView extends View implements ARActivity.CheckView, ARActiv
                 }
         },0,1000);
     }
-
+    private void setArPoints(ArrayList<Item> data){
+        Random random = new Random();
+        for(int i = 0 ; i < 20 ; i ++){
+            int index = i+curPos;
+            Item item = data.get(index);
+            Log.d("A",index+"");
+            ARPoint arPoint = new ARPoint(
+                item.getTitle(),
+                Double.parseDouble(item.getMapy()),
+                Double.parseDouble(item.getMapx()),
+                    ((double)(random.nextInt()%150))
+            );
+            arPoints.add(arPoint);
+            Log.d("ARPOINT"
+                    ,Double.parseDouble(item.getMapx())+"/"+
+                    Double.parseDouble(item.getMapy())+"");
+        }
+        curPos += 20;
+    }
     private double getDistance(Location location){
         return ((int)(currentLocation.distanceTo(location)))/(1000.0);
     }

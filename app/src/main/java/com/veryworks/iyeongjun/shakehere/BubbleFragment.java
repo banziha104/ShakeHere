@@ -91,7 +91,6 @@ public class BubbleFragment extends Fragment {
                 PickerItem item = new PickerItem();
                 item.setTitle(datas.get(position).getTitle());
                 item.setBackgroundImage(drawables.get(position));
-
                 Log.d("Bubble","makeItem"+drawables.get(position)+"/"+datas.get(position).getFirstimage());
                 item.setGradient(new BubbleGradient(colors.getColor((position * 2) % 8, 0),
                         colors.getColor((position * 2) % 8 + 1, 0), BubbleGradient.VERTICAL));

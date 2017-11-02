@@ -36,8 +36,6 @@ public class DataReceiver {
     }
 
     public void getTourData(String lang, int contentType, double lat, double lon){
-        UserLocation userLocation = new UserLocation(context);
-        userLocation.getLocation();
         retrofit = new Retrofit.Builder()
                 .baseUrl("http://api.visitkorea.or.kr")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -68,6 +66,7 @@ public class DataReceiver {
         });
     }
     public void getTourDataDefault(String lang, double lat, double lon){
+
         retrofit = new Retrofit.Builder()
                 .baseUrl("http://api.visitkorea.or.kr")
                 .addConverterFactory(GsonConverterFactory.create())

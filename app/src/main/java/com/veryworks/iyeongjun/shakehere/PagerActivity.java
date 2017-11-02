@@ -13,6 +13,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,6 +31,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.veryworks.iyeongjun.shakehere.Util.PermissionControl.checkVersion;
+import static com.veryworks.iyeongjun.shakehere.Util.UserLocation.currentUserLocation;
 
 public class PagerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -125,13 +127,15 @@ public class PagerActivity extends AppCompatActivity
     }
 
     private void setView() {
-        DataReceiver dataReceiver = new DataReceiver(this);
-        dataReceiver.getTourDataDefault(Const.Lang.KOREAN, 37.515359, 126.907623);
+//        DataReceiver dataReceiver = new DataReceiver(this);
+//        dataReceiver.getTourDataDefault(Const.Lang.KOREAN, 37.515359, 126.907623);
         setPager();
     }
 
 
     public void setPager() {
+
+        Log.d("ARPOINT",currentUserLocation.getLatitude()+"/"+currentUserLocation.getLongitude());
 
 //        tab.addTab(tab.newTab().setIcon(tabIcions[0]));
 //        tab.addTab(tab.newTab().setIcon(tabIcions[1]));
