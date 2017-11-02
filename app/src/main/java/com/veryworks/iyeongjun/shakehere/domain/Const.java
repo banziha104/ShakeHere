@@ -12,7 +12,7 @@ public class Const {
         //                    serviceKey= iMw%2F5Z0wNdwfRXJ4HVyIGeMk316OS1Wtsw8v7ItPa3L%2BcmRVKGv%2BBB0k1rit2uwBOuoRnoYOL7%2Bh6EIyblceCQ%3D%3D&numOfRows=10&MobileOS=AND&MobileApp=ShakeHere&mapX=37.515359&mapY=126.907623&radius=5000&_type=json
         public static final String TMAP_KEY = "3b85beaa-6a81-309a-a51d-4d1fff6b8c68";
         public static final String GOOGLE_MAP_KEY ="AIzaSyDI2UIyMCRzIVMxecg0ZJbNIbh7VYomeAs";
-                }
+    }
     public static class Status{
         public static final String SCREEN_ON = "Screen on";
         public static final String SCREEN_OFF = "Screen off";

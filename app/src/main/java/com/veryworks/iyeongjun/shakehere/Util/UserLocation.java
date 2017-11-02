@@ -93,6 +93,7 @@ public class UserLocation {
                     currentUserLocation.getLatitude(),
                     currentUserLocation.getLongitude()
                     );
+
         }
 
         @Override

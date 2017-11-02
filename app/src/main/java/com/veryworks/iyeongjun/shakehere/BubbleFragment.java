@@ -38,13 +38,12 @@ import static com.veryworks.iyeongjun.shakehere.domain.StaticData.drawables;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class BubbleFragment extends Fragment {
+public class BubbleFragment extends Fragment implements PagerActivity.PickerControl{
 
     TypedArray colors;
-    @BindView(R.id.bubble)
-    BubblePicker bubblePicker;
+    static BubblePicker bubblePicker;
     Unbinder unbinder;
-    Bitmap bitmap;
+
 
     public BubbleFragment() {
         // Required empty public constructor
@@ -55,6 +54,7 @@ public class BubbleFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_bubble, container, false);
         unbinder = ButterKnife.bind(this, view);
+        bubblePicker = view.findViewById(R.id.bubble);
         colors = getResources().obtainTypedArray(R.array.colors);
         setBubble();
         return view;
@@ -69,11 +69,15 @@ public class BubbleFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        bubblePicker.setVisibility(View.VISIBLE);
+        bubblePicker.onResume();
     }
 
     @Override
     public void onPause() {
         super.onPause();
+        bubblePicker.setVisibility(View.INVISIBLE);
+        bubblePicker.onPause();
     }
 
     private void setBubble() {
@@ -108,5 +112,14 @@ public class BubbleFragment extends Fragment {
             public void onBubbleDeselected(@NotNull PickerItem pickerItem) {
             }
         });
+    }
+    @Override
+    public void bubblePause() {
+        bubblePicker.onPause();
+    }
+
+    @Override
+    public void bubbleResume() {
+        bubblePicker.onResume();
     }
 }

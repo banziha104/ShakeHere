@@ -2,6 +2,7 @@ package com.veryworks.iyeongjun.shakehere;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.internal.NavigationMenuView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -19,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.veryworks.iyeongjun.shakehere.Util.PermissionControl;
 import com.veryworks.iyeongjun.shakehere.domain.Const;
@@ -30,37 +32,43 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.veryworks.iyeongjun.shakehere.BubbleFragment.bubblePicker;
 import static com.veryworks.iyeongjun.shakehere.Util.PermissionControl.checkVersion;
 import static com.veryworks.iyeongjun.shakehere.Util.UserLocation.currentUserLocation;
 
 public class PagerActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener{
 
     @BindView(R.id.tabLayout)
     TabLayout tab;
     @BindView(R.id.viewpager)
     ViewPager pager;
-
+    BubbleFragment bubbleFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_pager);
         ButterKnife.bind(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
+        ){
+            public void onDrawerClosed(View view) {
+                bubblePicker.setVisibility(View.VISIBLE);
+                invalidateOptionsMenu();
+            }
+
+            public void onDrawerOpened(View drawerView) {
+                bubblePicker.setVisibility(View.INVISIBLE);
+                invalidateOptionsMenu();
+            }
+        };
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
@@ -75,8 +83,8 @@ public class PagerActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+            bubbleFragment.onPause();
         } else {
-            super.onBackPressed();
         }
     }
 
@@ -154,7 +162,7 @@ public class PagerActivity extends AppCompatActivity
         List<Fragment> datas = new ArrayList<>();
 
         ListFragment listFragment = new ListFragment();
-        BubbleFragment bubbleFragment = new BubbleFragment();
+        bubbleFragment = new BubbleFragment();
         MapFragment mapFragment = new MapFragment();
         ARFragment arFragment = new ARFragment();
 
@@ -186,6 +194,10 @@ public class PagerActivity extends AppCompatActivity
 
             }
         });
+    }
+    interface PickerControl{
+        void bubblePause();
+        void bubbleResume();
     }
 
 }
