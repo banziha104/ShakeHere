@@ -23,6 +23,7 @@ public class MyUtil {
         else if(type == INN) result = "숙박";
         else if(type == SHOPPING) result = "쇼핑";
         else if(type == FOOD) result = "음식점";
+        else if(type == COURSE) result = "여행코스";
         else if(type == ALL) result = "문화";
         else result = "기타";
         return result;
@@ -37,6 +38,7 @@ public class MyUtil {
         else if(type == INN) result = myIcon[4];
         else if(type == SHOPPING) result = myIcon[5];
         else if(type == CANIVAL) result = myIcon[6];
+        else if(type == COURSE) result = myIcon[7];
         return result;
     }
     public static int convertPin(String strType){
@@ -49,6 +51,7 @@ public class MyUtil {
         else if(type == INN) result = myPin[4];
         else if(type == SHOPPING) result = myPin[5];
         else if(type == CANIVAL) result = myPin[6];
+        else if(type == COURSE) result = myPin[7];
         return result;
     }
     public static int convertColor(String strType){
@@ -62,6 +65,7 @@ public class MyUtil {
         else if(type == INN) result = pasColor[4];
         else if(type == SHOPPING) result = pasColor[5];
         else if(type == CANIVAL) result = pasColor[6];
+        else if(type == COURSE) result = pasColor[7];
         return result;
     }
     public static int convertGra(String strType){
@@ -74,6 +78,7 @@ public class MyUtil {
         else if(type == INN) result = pasGrColor[4];
         else if(type == SHOPPING) result = pasGrColor[5];
         else if(type == CANIVAL) result = pasGrColor[6];
+        else if(type == COURSE) result = pasGrColor[7];
         return result;
     }
 }

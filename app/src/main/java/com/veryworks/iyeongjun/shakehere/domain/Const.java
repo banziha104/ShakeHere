@@ -53,6 +53,7 @@ public class Const {
         public static final int INN = 32;
         public static final int SHOPPING = 38;
         public static final int FOOD = 39;
+        public static final int COURSE = 25;
         public static final int ALL = 1000;
     }
     public static class AR{

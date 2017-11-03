@@ -21,7 +21,8 @@ public class StaticData {
             R.color.pGr,
             R.color.pBl,
             R.color.pNM,
-            R.color.pBO
+            R.color.pBO,
+            R.color.pGC
     };
     public static int[] pasGrColor = {
             R.color.pgRd,
@@ -30,7 +31,8 @@ public class StaticData {
             R.color.pgGr,
             R.color.pgBl,
             R.color.pgNM,
-            R.color.pgBO
+            R.color.pgBO,
+            R.color.pgGC
     };
     public static int[] myIcon = {
             R.drawable.tour_icon,
@@ -40,6 +42,7 @@ public class StaticData {
             R.drawable.inn_icon,
             R.drawable.shopping_icon,
             R.drawable.canival_icon,
+            R.drawable.course_icon
     };
     public static int[] myPin = {
             R.drawable.tour_pin,
@@ -48,6 +51,7 @@ public class StaticData {
             R.drawable.reports_pin,
             R.drawable.inn_pin,
             R.drawable.shopping_pin,
-            R.drawable.canival_pin
+            R.drawable.canival_pin,
+            R.drawable.course_pin
     };
 }

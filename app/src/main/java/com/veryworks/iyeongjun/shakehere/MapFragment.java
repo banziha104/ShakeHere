@@ -3,15 +3,21 @@ package com.veryworks.iyeongjun.shakehere;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.veryworks.iyeongjun.shakehere.domain.MarkerItem;
 
 import java.util.ArrayList;
@@ -20,7 +26,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
+import static com.veryworks.iyeongjun.shakehere.Util.MyUtil.convertPin;
 import static com.veryworks.iyeongjun.shakehere.Util.UserLocation.currentUserLocation;
+import static com.veryworks.iyeongjun.shakehere.domain.StaticData.datas;
 
 
 public class MapFragment extends Fragment implements OnMapReadyCallback{
@@ -28,6 +36,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback{
     MapView googleMap;
     LatLng latLng;
     ArrayList<MarkerItem> point = new ArrayList();
+    View marker_root_view;
     public MapFragment() {
     }
 
@@ -38,16 +47,44 @@ public class MapFragment extends Fragment implements OnMapReadyCallback{
         View view = inflater.inflate(R.layout.fragment_map, container, false);
         googleMap = (MapView)view.findViewById(R.id.googleMap);
         latLng = new LatLng(currentUserLocation.getLatitude(),currentUserLocation.getLongitude());
+        setPoint();
         googleMap.getMapAsync(this);
         return view;
     }
+
     @Override
     public void onMapReady(GoogleMap map) {
         map.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        map.animateCamera(CameraUpdateFactory.zoomTo(2));
+        map.animateCamera(CameraUpdateFactory.zoomTo(14));
+        for(int i = 0 ; i < point.size(); i++) map.addMarker(setMarker(i)).showInfoWindow();
+        map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                Toast.makeText(getActivity(), "클릭"+marker.getTitle(), Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
     }
-
-
+    private void setPoint(){
+        for(int i = 0 ; i < datas.size() ; i++){
+            MarkerItem markerItem = new MarkerItem(
+                    Double.parseDouble(datas.get(i).getMapy()),
+                    Double.parseDouble(datas.get(i).getMapx()),
+                    datas.get(i).getTitle(),
+                    Integer.parseInt(datas.get(i).getContenttypeid()),
+                    convertPin(datas.get(i).getContenttypeid())
+            );
+            point.add(markerItem);
+        }
+    }
+    private MarkerOptions setMarker(int i){
+        MarkerOptions markerOptions = new MarkerOptions()
+                .position(new LatLng(point.get(i).getLat(), point.get(i).getLon()))
+                .title(point.get(i).getTitle())
+                .icon(BitmapDescriptorFactory.fromResource(point.get(i).getDrawble()));
+        Log.d("Marker",point.get(i).getDrawble()+"/"+datas.get(i).getContenttypeid()+"/"+datas.get(i).getTitle());
+        return markerOptions;
+    }
     @Override
     public void onDestroyView() {
         super.onDestroyView();

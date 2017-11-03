@@ -23,6 +23,7 @@
     <color name="pBl">#89B7D1</color>
     <color name="pNM">#7FA4FC</color>
     <color name="pBO">#A59BBF</color>
+    <color name="pGC">#C8C8C8</color>
 
     <color name="pgRd">#FFC0CA</color>
     <color name="pgJu">#FFC8A4</color>
@@ -31,5 +32,5 @@
     <color name="pgBl">#89B7D1</color>
     <color name="pgNM">#C7D8FF</color>
     <color name="pgBO">#DAD4EC</color>
-
+    <color name="pgGC">#EBEBEB</color>
 </resources>
