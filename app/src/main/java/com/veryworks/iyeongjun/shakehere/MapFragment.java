@@ -33,11 +33,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback{
         googleMap.getMapAsync(this);
         return view;
     }
-
-
-
-
-
     @Override
     public void onMapReady(GoogleMap googleMap) {
 

@@ -30,7 +30,8 @@ public class SplashActivity extends AppCompatActivity implements DataReceiver.Co
     @BindView(R.id.tempImage) ImageView tempImage;
     UserLocation userLocation = new UserLocation(this);
     DataReceiver dataReceiver = new DataReceiver(this);
-    boolean isDataReceiev = false;
+    boolean isInit = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +49,6 @@ public class SplashActivity extends AppCompatActivity implements DataReceiver.Co
         Intent intent = new Intent(SplashActivity.this,PagerActivity.class);
         startActivity(intent);
     }
-
     @Override
     public Drawable setImage(String url) {
         Picasso.with(this).load(url).into(tempImage);

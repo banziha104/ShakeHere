@@ -31,5 +31,20 @@
             </intent-filter>
         </activity>
         <activity android:name=".ARActivity"></activity>
+
+        <service
+            android:name=".ShakeDetectService"
+            android:enabled="true"
+            android:exported="true" />
+        <receiver
+        android:name=".DisplayReceiver"
+        android:enabled="true"
+        android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.BOOT_COMPLETED" />
+            <action android:name="android.intent.action.SCREEN_OFF" />
+            <action android:name="android.intent.action.SCREEN_ON" />
+        </intent-filter>
+    </receiver>
     </application>
 </manifest>

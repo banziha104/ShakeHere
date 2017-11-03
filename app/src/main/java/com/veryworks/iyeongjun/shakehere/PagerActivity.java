@@ -1,5 +1,9 @@
 package com.veryworks.iyeongjun.shakehere;
 
+import android.content.Intent;
+import android.content.res.Configuration;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.internal.NavigationMenuView;
@@ -44,11 +48,13 @@ public class PagerActivity extends AppCompatActivity
     @BindView(R.id.viewpager)
     ViewPager pager;
     BubbleFragment bubbleFragment;
+
+    boolean isBubbleVisible = true;
     private int[] tabIcons = {
             R.drawable.list_icon,
             R.drawable.tag_icon,
             R.drawable.map_icon,
-            R.drawable.ar_clicked
+            R.drawable.ar_icon
     };
     private int[] tabClickedIcons = {
             R.drawable.list_clicked,
@@ -56,6 +62,7 @@ public class PagerActivity extends AppCompatActivity
             R.drawable.map_clicked,
             R.drawable.ar_clicked
     };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,8 +70,12 @@ public class PagerActivity extends AppCompatActivity
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_pager);
         ButterKnife.bind(this);
+        startShakeDetect();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("ShakeHere");
+
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -73,11 +84,28 @@ public class PagerActivity extends AppCompatActivity
         ){
             public void onDrawerClosed(View view) {
                 bubblePicker.setVisibility(View.VISIBLE);
+                isBubbleVisible = true;
                 invalidateOptionsMenu();
             }
             public void onDrawerOpened(View drawerView) {
                 bubblePicker.setVisibility(View.INVISIBLE);
                 invalidateOptionsMenu();
+            }
+
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+                super.onDrawerSlide(drawerView, slideOffset);
+                if(isBubbleVisible){
+                    bubblePicker.setVisibility(View.INVISIBLE);
+                    isBubbleVisible = false;
+                }
+                Log.d("slide",slideOffset+"");
+            }
+
+            @Override
+            public void onConfigurationChanged(Configuration newConfig) {
+                super.onConfigurationChanged(newConfig);
+                Toast.makeText(PagerActivity.this, "change", Toast.LENGTH_SHORT).show();
             }
         };
         drawer.setDrawerListener(toggle);
@@ -182,6 +210,7 @@ public class PagerActivity extends AppCompatActivity
         tab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tabs) {
+
                 tabs.setIcon(tabClickedIcons[tabs.getPosition()]);
             }
 
@@ -191,11 +220,18 @@ public class PagerActivity extends AppCompatActivity
             }
 
             @Override
-            public void onTabReselected(TabLayout.Tab tab) {
+            public void onTabReselected(TabLayout.Tab tabs) {
 
             }
         });
     }
+
+    private void startShakeDetect() {
+        Intent intent = new Intent(PagerActivity.this, ShakeDetectService.class);
+        Log.d("Service","start");
+        startService(intent);
+    }
+
     interface PickerControl{
         void bubblePause();
         void bubbleResume();

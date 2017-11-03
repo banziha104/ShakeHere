@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnTouch;
 import butterknife.Unbinder;
 
 public class ARFragment extends Fragment {
@@ -39,11 +41,16 @@ public class ARFragment extends Fragment {
         super.onDestroyView();
         unbinder.unbind();
     }
-
-    @OnClick(R.id.btnAR)
-    public void btnARClicked(){
-        Intent intent = new Intent(getActivity(),ARActivity.class);
-        startActivity(intent);
+    @OnTouch(R.id.btnAR)
+    public boolean onClickedCardView(MotionEvent e, View v) {
+        if (e.getAction() == MotionEvent.ACTION_DOWN) {
+            btnAR.setImageResource(R.drawable.touched_screen_2);
+        } else if (e.getAction() == MotionEvent.ACTION_UP) {
+            btnAR.setImageResource(R.drawable.touch_screen_2);
+            Intent intent = new Intent(getActivity(),ARActivity.class);
+            startActivity(intent);
+        }
+        return true;
     }
 
 }

@@ -8,6 +8,8 @@
     <ImageView
         android:id="@+id/btnAR"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:src="@drawable/touch_screen_2" />
 
 </FrameLayout>
