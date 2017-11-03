@@ -1,5 +1,6 @@
 package com.veryworks.iyeongjun.shakehere;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
@@ -12,6 +13,8 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
+import com.tsengvn.typekit.Typekit;
+import com.tsengvn.typekit.TypekitContextWrapper;
 import com.veryworks.iyeongjun.shakehere.Util.PermissionControl;
 import com.veryworks.iyeongjun.shakehere.Util.UserLocation;
 import com.veryworks.iyeongjun.shakehere.domain.Const;
@@ -41,7 +44,7 @@ public class SplashActivity extends AppCompatActivity implements DataReceiver.Co
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
         ButterKnife.bind(this);
-
+        Typekit.getInstance().addNormal(Typekit.createFromAsset(this, "myfont.otf"));
         UserLocation userLocation = new UserLocation(this);
         userLocation.getLocation();
     }
@@ -72,6 +75,12 @@ public class SplashActivity extends AppCompatActivity implements DataReceiver.Co
             w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
     }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(TypekitContextWrapper.wrap(newBase));
+    }
+
     private void getColor(){
         TypedArray colors;
         colors = getResources().obtainTypedArray(R.array.colors);

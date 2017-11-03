@@ -25,6 +25,7 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static com.veryworks.iyeongjun.shakehere.Util.MyUtil.convertColor;
 import static com.veryworks.iyeongjun.shakehere.domain.StaticData.datas;
 
 
@@ -87,11 +88,11 @@ public class AROverlayView extends View implements ARActivity.CheckView, ARActiv
         final int radius = 30;
         Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         paint.setStyle(Paint.Style.FILL);
-        paint.setColor(Color.WHITE);
         paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
         paint.setTextSize(60);
 
         for (int i = 0; i < arPoints.size(); i ++) {
+            paint.setColor(getMyColor(convertColor(datas.get(i).getContenttypeid())));
             float[] currentLocationInECEF = LocationHelper.WSG84toECEF(currentLocation);
             float[] pointInECEF = LocationHelper.WSG84toECEF(arPoints.get(i).getLocation());
             float[] pointInENU = LocationHelper.ECEFtoENU(currentLocation, currentLocationInECEF, pointInECEF);
@@ -186,6 +187,9 @@ public class AROverlayView extends View implements ARActivity.CheckView, ARActiv
     @Override
     public void destoryTimer() {
         timer.cancel();
+    }
+    private int getMyColor(int i){
+        return getResources().getColor(i);
     }
 }
 

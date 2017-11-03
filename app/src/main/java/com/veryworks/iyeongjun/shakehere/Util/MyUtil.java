@@ -1,5 +1,7 @@
 package com.veryworks.iyeongjun.shakehere.Util;
 
+import android.util.Log;
+
 import static com.veryworks.iyeongjun.shakehere.domain.Const.ContentType.*;
 import static com.veryworks.iyeongjun.shakehere.domain.StaticData.myIcon;
 import static com.veryworks.iyeongjun.shakehere.domain.StaticData.myPin;
@@ -51,6 +53,7 @@ public class MyUtil {
     }
     public static int convertColor(String strType){
         int result = 0;
+        Log.d("mylok",strType);
         int type = Integer.parseInt(strType);
         if(type == TOUR) result = pasColor[0];
         else if(type == COULTURE) result = pasColor[1];

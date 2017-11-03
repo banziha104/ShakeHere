@@ -31,6 +31,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
+import static com.veryworks.iyeongjun.shakehere.Util.MyUtil.convertColor;
+import static com.veryworks.iyeongjun.shakehere.Util.MyUtil.convertGra;
 import static com.veryworks.iyeongjun.shakehere.domain.StaticData.datas;
 import static com.veryworks.iyeongjun.shakehere.domain.StaticData.drawables;
 
@@ -95,10 +97,18 @@ public class BubbleFragment extends Fragment implements PagerActivity.PickerCont
                 PickerItem item = new PickerItem();
                 item.setTitle(datas.get(position).getTitle());
                 item.setBackgroundImage(drawables.get(position));
-                Log.d("Bubble","makeItem"+drawables.get(position)+"/"+datas.get(position).getFirstimage());
-                item.setGradient(new BubbleGradient(colors.getColor((position * 2) % 8, 0),
-                        colors.getColor((position * 2) % 8 + 1, 0), BubbleGradient.VERTICAL));
+                item.setGradient(new BubbleGradient(
+                        getMyColor(convertGra(datas.get(position).getContenttypeid())),
+                        getMyColor(convertColor(datas.get(position).getContenttypeid())),
+                        BubbleGradient.VERTICAL));
                 item.setTextColor(ContextCompat.getColor(getActivity(), android.R.color.white));
+//                Log.d("colorsss",(colors.getColor((position * 2) % 8,0))+
+//                        ((colors.getColor((position * 2) % 8 ,0)) )+"");
+//                Log.d("colorsss",position+
+//                        datas.get(position).getContenttypeid()+"/"+
+//                        datas.get(position).getContenttypeid()+"/"+
+//                        convertColor(datas.get(position).getContenttypeid())+"/"+
+//                        convertGra(datas.get(position).getContenttypeid()));
                 return item;
             }
         });
@@ -121,5 +131,8 @@ public class BubbleFragment extends Fragment implements PagerActivity.PickerCont
     @Override
     public void bubbleResume() {
         bubblePicker.onResume();
+    }
+    private int getMyColor(int i){
+        return getResources().getColor(i);
     }
 }

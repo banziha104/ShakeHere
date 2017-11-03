@@ -139,7 +139,7 @@ public class DataReceiver {
                     i+datas.get(i).getAddr2()+"/"+
                     i+datas.get(i).getTel()+"/"
                     +datas.get(i).getContenttypeid());
-            Log.d("Image",datas.get(i).getFirstimage2()+"/"+datas.get(i).getFirstimage()+"/");
+            Log.d("Image",datas.get(i).getFirstimage2()+"/"+datas.get(i).getContenttypeid()+"/");
             currentPageNo += 100;
             if(context instanceof CompleteData && i < 20) setUrlImage(items[i]);
         }

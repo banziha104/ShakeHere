@@ -1,6 +1,7 @@
 package com.veryworks.iyeongjun.shakehere;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.location.Location;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
@@ -76,6 +77,7 @@ public class RecylerAdapter extends RecyclerView.Adapter<RecylerAdapter.ViewHold
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
+            setTxtSetting();
         }
         public void setImage(Item item){
             Picasso.with(context).load(item.getFirstimage()).into(roundedImageView);
@@ -91,7 +93,17 @@ public class RecylerAdapter extends RecyclerView.Adapter<RecylerAdapter.ViewHold
             display.getMetrics(displaymetrics);
             return (int) (dp * displaymetrics.density + 0.5f);
         }
+        private void setTxtSetting(){
+            reTxtTitle.setTextColor(Color.WHITE);
+
+//            txtAdress.setTextSize(9.0f);
+//            txtType.setTextSize(10.0f);
+//            txtCall.setTextSize(10.0f);
+//            txtDistance.setTextSize(10.0f);
+        }
+
     }
+
     private String getDistance(Item item){
         Random random = new Random();
         ARPoint arPoint = new ARPoint(

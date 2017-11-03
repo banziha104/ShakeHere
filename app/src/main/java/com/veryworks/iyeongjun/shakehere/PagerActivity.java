@@ -75,7 +75,7 @@ public class PagerActivity extends AppCompatActivity
         ButterKnife.bind(this);
         Typekit.getInstance().addNormal(Typekit.createFromAsset(this, "myfont.otf"));
 
-        startShakeDetect();
+//        startShakeDetect();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);

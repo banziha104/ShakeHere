@@ -8,7 +8,7 @@
 
     <android.support.v7.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="0dp"
+        android:layout_width="340dp"
         android:layout_height="280dp"
         android:layout_marginBottom="25dp"
         android:layout_marginEnd="20dp"
@@ -19,7 +19,7 @@
         app:cardCornerRadius="10dp"
         app:cardElevation="3dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -76,11 +76,11 @@
                     <TextView
                         android:id="@+id/txtAdress"
                         android:layout_width="144dp"
-                        android:layout_height="46dp"
+                        android:layout_height="54dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginLeft="16dp"
                         android:layout_marginStart="16dp"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="4dp"
                         android:gravity="center_vertical"
                         android:text="TextView"
                         app:layout_constraintLeft_toLeftOf="parent"
@@ -88,12 +88,12 @@
 
                     <TextView
                         android:id="@+id/txtCall"
-                        android:layout_width="144dp"
-                        android:layout_height="21dp"
+                        android:layout_width="143dp"
+                        android:layout_height="40dp"
                         android:layout_marginBottom="13dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginLeft="8dp"
-                        android:layout_marginRight="8dp"
+                        android:layout_marginRight="0dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:text="TextView"
@@ -102,33 +102,35 @@
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.965" />
+                        app:layout_constraintVertical_bias="1.0"
+                        tools:layout_editor_absoluteX="193dp"
+                        tools:layout_editor_absoluteY="77dp" />
 
                     <TextView
                         android:id="@+id/txtType"
-                        android:layout_width="130dp"
-                        android:layout_height="20dp"
+                        android:layout_width="136dp"
+                        android:layout_height="37dp"
                         android:layout_marginBottom="13dp"
-                        android:layout_marginLeft="8dp"
+                        android:layout_marginLeft="16dp"
                         android:layout_marginRight="8dp"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="8dp"
                         android:text="TextView"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintHorizontal_bias="0.042"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.966" />
+                        app:layout_constraintVertical_bias="1.0" />
 
                     <TextView
                         android:id="@+id/txtDistance"
-                        android:layout_width="135dp"
-                        android:layout_height="20dp"
+                        android:layout_width="136dp"
+                        android:layout_height="42dp"
                         android:layout_marginBottom="8dp"
                         android:layout_marginEnd="16dp"
                         android:layout_marginLeft="8dp"
-                        android:layout_marginRight="8dp"
+                        android:layout_marginRight="0dp"
                         android:layout_marginTop="16dp"
                         android:text="TextView"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -136,7 +138,9 @@
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.104" />
+                        app:layout_constraintVertical_bias="0.0"
+                        tools:layout_editor_absoluteX="192dp"
+                        tools:layout_editor_absoluteY="19dp" />
 
                 </android.support.constraint.ConstraintLayout>
 
@@ -163,12 +167,12 @@
             <TextView
                 android:id="@+id/reTxtTitle"
                 android:layout_width="105dp"
-                android:layout_height="23dp"
+                android:layout_height="40dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="117dp"
+                android:layout_marginTop="94dp"
                 android:text="TextView"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="@+id/linearLayout"
