@@ -1,5 +1,6 @@
 package com.veryworks.iyeongjun.shakehere;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
@@ -26,6 +27,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.tsengvn.typekit.Typekit;
+import com.tsengvn.typekit.TypekitContextWrapper;
 import com.veryworks.iyeongjun.shakehere.Util.PermissionControl;
 import com.veryworks.iyeongjun.shakehere.domain.Const;
 import com.veryworks.iyeongjun.shakehere.domain.DataReceiver;
@@ -70,6 +73,8 @@ public class PagerActivity extends AppCompatActivity
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_pager);
         ButterKnife.bind(this);
+        Typekit.getInstance().addNormal(Typekit.createFromAsset(this, "myfont.otf"));
+
         startShakeDetect();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
@@ -224,6 +229,10 @@ public class PagerActivity extends AppCompatActivity
 
             }
         });
+    }
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(TypekitContextWrapper.wrap(newBase));
     }
 
     private void startShakeDetect() {

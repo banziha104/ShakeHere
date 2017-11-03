@@ -1,6 +1,7 @@
 package com.veryworks.iyeongjun.shakehere;
 
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import io.reactivex.subjects.Subject;
 import static com.veryworks.iyeongjun.shakehere.Util.PermissionControl.checkVersion;
 import static com.veryworks.iyeongjun.shakehere.Util.UserLocation.currentUserLocation;
 import static com.veryworks.iyeongjun.shakehere.domain.StaticData.datas;
+import static com.veryworks.iyeongjun.shakehere.domain.StaticData.pasColor;
 
 public class SplashActivity extends AppCompatActivity implements DataReceiver.CompleteData
         , PermissionControl.CallBack{
@@ -69,5 +71,12 @@ public class SplashActivity extends AppCompatActivity implements DataReceiver.Co
             Window w = getWindow(); // in Activity's onCreate() for instance
             w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
+    }
+    private void getColor(){
+        TypedArray colors;
+        colors = getResources().obtainTypedArray(R.array.colors);
+        pasColor = new int[]{
+
+        };
     }
 }

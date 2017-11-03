@@ -48,7 +48,7 @@ dependencies {
     compile 'com.android.support:support-v4:26.+'
     compile 'com.google.android.gms:play-services-maps:10.2.6'
     compile 'com.google.android.gms:play-services-location:10.2.6'
-
+    compile 'com.makeramen:roundedimageview:2.2.1'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     compile files('libs/com.skp.Tmap_1.0.48.jar')

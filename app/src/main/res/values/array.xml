@@ -10,4 +10,22 @@
         <item>@color/purpleStart</item>
         <item>@color/purpleEnd</item>
     </integer-array>
+    <integer-array name="mycolors">
+        <item>@color/pRd</item>
+        <item>@color/pJu</item>
+        <item>@color/pNo</item>
+        <item>@color/pGr</item>
+        <item>@color/pBl</item>
+        <item>@color/pNM</item>
+        <item>@color/pBO</item>
+    </integer-array>
+    <integer-array name="grdColors">
+        <item>@color/pgRd</item>
+        <item>@color/pgJu</item>
+        <item>@color/pgNo</item>
+        <item>@color/pgGr</item>
+        <item>@color/pgBl</item>
+        <item>@color/pgNM</item>
+        <item>@color/pgBO</item>
+    </integer-array>
 </resources>
