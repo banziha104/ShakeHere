@@ -45,9 +45,12 @@ public class UserLocation {
     public UserLocation(Context context) {
         this.context = context;
         geocoder = new Geocoder(context);
+        Log.d("LOCATION","Construct");
     }
 
     public void getLocation() {
+
+        Log.d("LOCATION","getLOcation");
         LocationManager locationManager =
                 (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
         isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
@@ -56,6 +59,7 @@ public class UserLocation {
                 != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
+            Log.d("LOCATION","not granted");
             return;
         }
 

@@ -1,5 +1,6 @@
 package com.veryworks.iyeongjun.shakehere;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -56,12 +57,13 @@ public class MapFragment extends Fragment implements OnMapReadyCallback{
     public void onMapReady(GoogleMap map) {
         map.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         map.animateCamera(CameraUpdateFactory.zoomTo(14));
-        for(int i = 0 ; i < point.size(); i++) map.addMarker(setMarker(i)).showInfoWindow();
-        map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+        for(int i = 0 ; i < point.size()-1; i++) map.addMarker(setMarker(i)).showInfoWindow();
+        map.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
-            public boolean onMarkerClick(Marker marker) {
-                Toast.makeText(getActivity(), "클릭"+marker.getTitle(), Toast.LENGTH_SHORT).show();
-                return false;
+            public void onInfoWindowClick(Marker marker) {
+                Intent intent = new Intent(getActivity(),DetailActivity.class);
+                intent.putExtra("pos2",marker.getTitle());
+                startActivity(intent);
             }
         });
     }

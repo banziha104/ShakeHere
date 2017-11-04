@@ -66,7 +66,7 @@ public class DataReceiver {
         });
     }
     public void getTourDataDefault(String lang, double lat, double lon){
-
+        Log.d("LOCATION","getTourData");
         retrofit = new Retrofit.Builder()
                 .baseUrl("http://api.visitkorea.or.kr")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -141,7 +141,6 @@ public class DataReceiver {
                     +datas.get(i).getContenttypeid());
             Log.d("Image",datas.get(i).getFirstimage2()+"/"+datas.get(i).getContenttypeid()+"/");
             currentPageNo += 100;
-            if(context instanceof CompleteData && i < 20) setUrlImage(items[i]);
         }
         if (context instanceof CompleteData){
             ((CompleteData)context).dataReceieveComplete();
@@ -152,12 +151,8 @@ public class DataReceiver {
         }
     }
 
-    public void setUrlImage(Item item){
-        drawables.add(((CompleteData)context).setImage(item.getFirstimage()));
-    }
     public interface CompleteData{
         void dataReceieveComplete();
-        Drawable setImage(String url);
     }
 
 //    interface InterfaceForGetSeoulData{

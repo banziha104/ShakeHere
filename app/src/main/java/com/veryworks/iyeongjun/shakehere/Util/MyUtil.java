@@ -56,7 +56,6 @@ public class MyUtil {
     }
     public static int convertColor(String strType){
         int result = 0;
-        Log.d("mylok",strType);
         int type = Integer.parseInt(strType);
         if(type == TOUR) result = pasColor[0];
         else if(type == COULTURE) result = pasColor[1];

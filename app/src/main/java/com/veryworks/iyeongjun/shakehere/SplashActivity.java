@@ -6,11 +6,13 @@ import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 import com.tsengvn.typekit.Typekit;
@@ -31,54 +33,60 @@ import static com.veryworks.iyeongjun.shakehere.domain.StaticData.pasColor;
 
 public class SplashActivity extends AppCompatActivity implements DataReceiver.CompleteData
         , PermissionControl.CallBack{
-
-    @BindView(R.id.tempImage) ImageView tempImage;
-    UserLocation userLocation = new UserLocation(this);
-    DataReceiver dataReceiver = new DataReceiver(this);
+    boolean isOnce = false;
     boolean isInit = false;
-
+    DataReceiver dataReceiver;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
+        PermissionControl.checkVersion(this);
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//            checkVersion(this);
+//        } else {
+//            init();
+//        }
         ButterKnife.bind(this);
         Typekit.getInstance().addNormal(Typekit.createFromAsset(this, "myfont.otf"));
-        UserLocation userLocation = new UserLocation(this);
-        userLocation.getLocation();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(isOnce){
+
+        }
     }
 
     @Override
     public void dataReceieveComplete() {
         Intent intent = new Intent(SplashActivity.this,PagerActivity.class);
         startActivity(intent);
+        isOnce = true;
     }
-    @Override
-    public Drawable setImage(String url) {
-        Picasso.with(this).load(url).into(tempImage);
-        return tempImage.getDrawable();
-    }
-
 
     @Override
     public void init() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            checkVersion(this);
-        } else {
-            init();
-        }
-
-        ButterKnife.bind(this);
+        Log.d("PerMission","init");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window w = getWindow(); // in Activity's onCreate() for instance
             w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
+        Toast.makeText(this, "위치를 수신중입니다.", Toast.LENGTH_SHORT).show();
+        UserLocation userLocation = new UserLocation(this);
+        userLocation.getLocation();
     }
 
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(TypekitContextWrapper.wrap(newBase));
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        PermissionControl.onResult(this, requestCode, grantResults);
     }
 
     private void getColor(){

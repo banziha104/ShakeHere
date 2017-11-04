@@ -1,6 +1,7 @@
 package com.veryworks.iyeongjun.shakehere;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.location.Location;
 import android.support.v7.widget.RecyclerView;
@@ -26,6 +27,7 @@ import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 import static com.veryworks.iyeongjun.shakehere.Util.MyUtil.convertIcon;
 import static com.veryworks.iyeongjun.shakehere.Util.MyUtil.convertType;
@@ -38,6 +40,7 @@ import static com.veryworks.iyeongjun.shakehere.Util.UserLocation.currentUserLoc
 public class RecylerAdapter extends RecyclerView.Adapter<RecylerAdapter.ViewHolder> {
     ArrayList<Item> data = new ArrayList<>();
     Context context;
+    int pos;
     public RecylerAdapter(Context context,ArrayList<Item> data) {
         this.data = data;
         this.context = context;
@@ -59,6 +62,7 @@ public class RecylerAdapter extends RecyclerView.Adapter<RecylerAdapter.ViewHold
         holder.txtType.setText(convertType(item.getContenttypeid()));
         holder.setImage(item);
         holder.setIcon(item);
+        holder.setPosition(i);
     }
 
     @Override
@@ -74,6 +78,8 @@ public class RecylerAdapter extends RecyclerView.Adapter<RecylerAdapter.ViewHold
         @BindView(R.id.txtCall) TextView txtCall;
         @BindView(R.id.txtType) TextView txtType;
         @BindView(R.id.txtDistance) TextView txtDistance;
+        private int position;
+
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
@@ -102,6 +108,16 @@ public class RecylerAdapter extends RecyclerView.Adapter<RecylerAdapter.ViewHold
 //            txtDistance.setTextSize(10.0f);
         }
 
+        public void setPosition(int position) {
+            this.position = position;
+        }
+
+        @OnClick(R.id.cardView)
+        public void cardviewClicked(){
+            Intent intent = new Intent(context,DetailActivity.class);
+            intent.putExtra("pos",position);
+            context.startActivity(intent);
+        }
     }
 
     private String getDistance(Item item){

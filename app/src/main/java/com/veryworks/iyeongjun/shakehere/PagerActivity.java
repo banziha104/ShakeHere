@@ -44,7 +44,7 @@ import static com.veryworks.iyeongjun.shakehere.Util.PermissionControl.checkVers
 import static com.veryworks.iyeongjun.shakehere.Util.UserLocation.currentUserLocation;
 
 public class PagerActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener{
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.tabLayout)
     TabLayout tab;
@@ -75,23 +75,22 @@ public class PagerActivity extends AppCompatActivity
         ButterKnife.bind(this);
         Typekit.getInstance().addNormal(Typekit.createFromAsset(this, "myfont.otf"));
 
-//        startShakeDetect();
+        startShakeDetect();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("ShakeHere");
 
-
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
-        ){
+        ) {
             public void onDrawerClosed(View view) {
                 bubblePicker.setVisibility(View.VISIBLE);
                 isBubbleVisible = true;
                 invalidateOptionsMenu();
             }
+
             public void onDrawerOpened(View drawerView) {
                 bubblePicker.setVisibility(View.INVISIBLE);
                 invalidateOptionsMenu();
@@ -100,11 +99,11 @@ public class PagerActivity extends AppCompatActivity
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
                 super.onDrawerSlide(drawerView, slideOffset);
-                if(isBubbleVisible){
+                if (isBubbleVisible) {
                     bubblePicker.setVisibility(View.INVISIBLE);
                     isBubbleVisible = false;
                 }
-                Log.d("slide",slideOffset+"");
+                Log.d("slide", slideOffset + "");
             }
 
             @Override
@@ -158,25 +157,35 @@ public class PagerActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        Intent intent = new Intent(PagerActivity.this, SplashActivity.class);
+        String lang = "";
+        int type = 0;
+        if (id == R.id.nav_tour) type = Const.ContentType.TOUR;
+        else if (id == R.id.nav_culture) type = Const.ContentType.COULTURE;
+        else if (id == R.id.nav_food) type = Const.ContentType.FOOD;
+        else if (id == R.id.nav_reports) type = Const.ContentType.REPORTS;
+        else if (id == R.id.nav_inn) type = Const.ContentType.INN;
+        else if (id == R.id.nav_shopping) type = Const.ContentType.SHOPPING;
+        else if (id == R.id.nav_canival) type = Const.ContentType.CANIVAL;
+        else if (id == R.id.nav_courese) type = Const.ContentType.COURSE;
+        else if (id == R.id.nav_kor) lang = Const.Lang.KOREAN;
+        else if (id == R.id.nav_jpn) lang = Const.Lang.JAPAN;
+        else if (id == R.id.nav_chn) lang = Const.Lang.CHINA_BUN;
+        else if (id == R.id.nav_Eng) lang = Const.Lang.ENGLISH;
+        else if (id == R.id.nav_Ger) lang = Const.Lang.GERMAN;
+        else if (id == R.id.nav_Frn) lang = Const.Lang.FRANCE;
+        else if (id == R.id.nav_Spain) lang = Const.Lang.SPAIN;
+        else if (id == R.id.nav_Rus) lang = Const.Lang.RUSSIA;
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+    DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+        intent.putExtra("type",type);
+        intent.putExtra("lang",lang);
+        startActivity(intent);
+
         return true;
     }
+
 
     private void setView() {
 //        DataReceiver dataReceiver = new DataReceiver(this);

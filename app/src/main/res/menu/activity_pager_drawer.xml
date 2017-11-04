@@ -3,33 +3,73 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:id="@+id/nav_tour"
+            android:icon="@drawable/tour_icon"
+            android:title="관광" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:id="@+id/nav_culture"
+            android:icon="@drawable/culture_icon"
+            android:title="문화시설" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:id="@+id/nav_food"
+            android:icon="@drawable/food_icon"
+            android:title="음식점" />
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:id="@+id/nav_reports"
+            android:icon="@drawable/reports_icon"
+            android:title="레포츠" />
+        <item
+            android:id="@+id/nav_inn"
+            android:icon="@drawable/inn_icon"
+            android:title="숙박" />
+        <item
+            android:id="@+id/nav_shopping"
+            android:icon="@drawable/shopping_icon"
+            android:title="쇼핑" />
+        <item
+            android:id="@+id/nav_canival"
+            android:icon="@drawable/canival_icon"
+            android:title="행사공연" />
+        <item
+            android:id="@+id/nav_courese"
+            android:icon="@drawable/course_icon"
+            android:title="코스" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="Langague">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:id="@+id/nav_kor"
+                android:icon="@drawable/korea"
+                android:title="한국어" />
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:id="@+id/nav_jpn"
+                android:icon="@drawable/japan"
+                android:title="日本" />
+            <item
+                android:id="@+id/nav_chn"
+                android:icon="@drawable/china"
+                android:title="中国" />
+            <item
+                android:id="@+id/nav_Eng"
+                android:icon="@drawable/usa"
+                android:title="English" />
+            <item
+                android:id="@+id/nav_Ger"
+                android:icon="@drawable/german"
+                android:title="Deutschland" />
+            <item
+                android:id="@+id/nav_Frn"
+                android:icon="@drawable/france"
+                android:title="France" />
+            <item
+                android:id="@+id/nav_Spain"
+                android:icon="@drawable/spain"
+                android:title="España" />
+            <item
+                android:id="@+id/nav_Rus"
+                android:icon="@drawable/russia"
+                android:title="Россия" />
         </menu>
     </item>
 

@@ -20,6 +20,7 @@ public class Const {
     }
     public static class Lang{
         public static final String KOREAN = "KorService";
+        public static final String JAPAN = "JpnService";
         public static final String ENGLISH = "EngService";
         public static final String CHINA_GAN = "ChsService";
         public static final String CHINA_BUN = "ChtService";

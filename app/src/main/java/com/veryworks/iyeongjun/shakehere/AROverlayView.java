@@ -152,6 +152,7 @@ public class AROverlayView extends View implements ARActivity.CheckView, ARActiv
                     if(arr[i] && temparr[i]){
                         if (!isRedirected) {
                             Intent intent = new Intent(context,DetailActivity.class);
+                            intent.putExtra("pos",i);
                             context.startActivity(intent);
                             context.finish();
                             isRedirected = true;

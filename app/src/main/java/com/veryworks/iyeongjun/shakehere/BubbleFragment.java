@@ -1,6 +1,7 @@
 package com.veryworks.iyeongjun.shakehere;
 
 
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -96,7 +97,6 @@ public class BubbleFragment extends Fragment implements PagerActivity.PickerCont
             public PickerItem getItem(int position) {
                 PickerItem item = new PickerItem();
                 item.setTitle(datas.get(position).getTitle());
-                item.setBackgroundImage(drawables.get(position));
                 item.setGradient(new BubbleGradient(
                         getMyColor(convertGra(datas.get(position).getContenttypeid())),
                         getMyColor(convertColor(datas.get(position).getContenttypeid())),
@@ -115,7 +115,9 @@ public class BubbleFragment extends Fragment implements PagerActivity.PickerCont
         bubblePicker.setListener(new BubblePickerListener() {
             @Override
             public void onBubbleSelected(@NotNull PickerItem pickerItem) {
-
+                Intent intent = new Intent(getActivity(),DetailActivity.class);
+                intent.putExtra("pos2",pickerItem.getTitle());
+                startActivity(intent);
             }
 
             @Override
