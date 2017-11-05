@@ -34,7 +34,7 @@ public class DisplayReceiver extends BroadcastReceiver {
                 break;
             case Intent.ACTION_BOOT_COMPLETED:
                 setStatus(Const.Status.BOOT_COMPLETE);
-                if(isServiceRan == false)context.startService(shakeServiceIntent);
+                if(!isServiceRan)context.startService(shakeServiceIntent);
                 break;
         }
     }
@@ -42,6 +42,7 @@ public class DisplayReceiver extends BroadcastReceiver {
         ScreenStatus = status;
         Log.d(TAG,status);
     }
+    //a
     public void setShakeServiceContext(Context context){
         shakeController = (ShakeController)context;
     }
