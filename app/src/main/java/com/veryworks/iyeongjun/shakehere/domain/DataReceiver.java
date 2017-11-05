@@ -35,13 +35,43 @@ public class DataReceiver {
         this.context = context;
     }
 
-    public void getTourData(String lang, int contentType, double lat, double lon){
+    public void getTourData(String lang , double lat, double lon){
         retrofit = new Retrofit.Builder()
                 .baseUrl("http://api.visitkorea.or.kr")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         InterfaceForTourdata interfaceForTourdata
                 = retrofit.create(InterfaceForTourdata.class);
+        Call<TourData> result = interfaceForTourdata.getTourData(lang,
+                Const.Auth.KEY,
+                Const.DefaultSetting.DEFAULT_NUM_OF_ROWS,
+                Const.DefaultSetting.DEFAULT_MOBILE_OS,
+                Const.DefaultSetting.APP_NAME,
+                lon,
+                lat,
+                Const.DefaultSetting.DEFAULT_RADIUS,
+                Const.DefaultSetting.DEFAULT_TYPE,
+                currentPageNo);
+        result.enqueue(new Callback<TourData>() {
+            @Override
+            public void onResponse(Call<TourData> call, Response<TourData> response) {
+                ifSeccess(response);
+            }
+
+            @Override
+            public void onFailure(Call<TourData> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public void getTourDataWithType(String lang, int contentType, double lat, double lon){
+        retrofit = new Retrofit.Builder()
+                .baseUrl("http://api.visitkorea.or.kr")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        InterfaceForTourdataWithType interfaceForTourdata
+                = retrofit.create(InterfaceForTourdataWithType.class);
         Call<TourData> result = interfaceForTourdata.getTourData(lang,
                 Const.Auth.KEY,
                 Const.DefaultSetting.DEFAULT_NUM_OF_ROWS,
@@ -56,7 +86,7 @@ public class DataReceiver {
         result.enqueue(new Callback<TourData>() {
             @Override
             public void onResponse(Call<TourData> call, Response<TourData> response) {
-                Log.d("Data",response.body().toString());
+                ifSeccess(response);
             }
 
             @Override
@@ -65,6 +95,7 @@ public class DataReceiver {
             }
         });
     }
+
     public void getTourDataDefault(String lang, double lat, double lon){
         Log.d("LOCATION","getTourData");
         retrofit = new Retrofit.Builder()
@@ -102,13 +133,27 @@ public class DataReceiver {
                                    @Query("numOfRows") int numOfPage,
                                    @Query("MobileOS") String mobileOS,
                                    @Query("MobileApp") String mobileApp,
-                                   @Query("contentTypeId") int contentType,
                                    @Query("mapX") double mapX,
                                    @Query("mapY") double mapY,
                                    @Query("radius") int radius,
                                    @Query("_type") String type,
                                    @Query("pageNo") int Pageno
                                    );
+    }
+    interface InterfaceForTourdataWithType{
+        @GET("/openapi/service/rest/{lang}/locationBasedList")
+        Call<TourData> getTourData(@Path("lang") String Lang,
+                                   @Query(value = "serviceKey",encoded = true) String key,
+                                   @Query("numOfRows") int numOfPage,
+                                   @Query("MobileOS") String mobileOS,
+                                   @Query("MobileApp") String mobileApp,
+                                   @Query("contentTypeId") int contentType,
+                                   @Query("mapX") double mapX,
+                                   @Query("mapY") double mapY,
+                                   @Query("radius") int radius,
+                                   @Query("_type") String type,
+                                   @Query("pageNo") int Pageno
+        );
     }
     interface InterfaceForTourdataWithOutContentType{
         @GET("/openapi/service/rest/{lang}/locationBasedList")
@@ -127,6 +172,7 @@ public class DataReceiver {
 
     private void ifSeccess(Response<TourData> response){
         Item[] items = response.body().getResponse().getBody().getItems().getItem();
+        if(datas != null) datas.clear();
         for(int i = 0 ; i < items.length ; i ++){
             datas.add(items[i]);
             Log.d("Data",i+datas.get(i).getTitle()+"/"+
@@ -140,7 +186,6 @@ public class DataReceiver {
                     i+datas.get(i).getTel()+"/"
                     +datas.get(i).getContenttypeid());
             Log.d("Image",datas.get(i).getFirstimage2()+"/"+datas.get(i).getContenttypeid()+"/");
-            currentPageNo += 100;
         }
         if (context instanceof CompleteData){
             ((CompleteData)context).dataReceieveComplete();

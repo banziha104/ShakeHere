@@ -22,6 +22,7 @@ import com.veryworks.iyeongjun.shakehere.domain.DataReceiver;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.veryworks.iyeongjun.shakehere.Util.UserLocation.currentUserLocation;
 import static com.veryworks.iyeongjun.shakehere.Util.UserSetting.userLanguage;
 import static com.veryworks.iyeongjun.shakehere.Util.UserSetting.usercontentType;
 import static com.veryworks.iyeongjun.shakehere.domain.StaticData.pasColor;
@@ -46,6 +47,7 @@ public class SplashActivity extends AppCompatActivity implements DataReceiver.Co
 //            init();
 //        }
         ButterKnife.bind(this);
+        splashImg.setImageResource(R.drawable.splash);
         Typekit.getInstance().addNormal(Typekit.createFromAsset(this, "myfont.otf"));
     }
 
@@ -54,19 +56,29 @@ public class SplashActivity extends AppCompatActivity implements DataReceiver.Co
         super.onResume();
         Intent intent = getIntent();
         if (intent.getBooleanExtra("isChange", false)) {
+            Log.d("resume","inresumt");
             splashImg.setImageResource(R.drawable.reload);
             Toast.makeText(this, "Data Change", Toast.LENGTH_SHORT).show();
             String lang = intent.getStringExtra("lang");
-            String type = intent.getStringExtra("type");
+            int type = intent.getIntExtra("type",0);
             changeData(lang, type);
         }
     }
 
-    private void changeData(String lang, String type) {
+    private void changeData(String lang, int type) {
         if (lang != null) {
             userLanguage = lang;
-        } else if (type != null) {
+        } else if (type != 0) {
             usercontentType = type;
+        }
+        DataReceiver datareceiver = new DataReceiver(this);
+        if(usercontentType != 0){
+            datareceiver.getTourDataWithType(userLanguage,
+                    usercontentType,currentUserLocation.getLatitude(),currentUserLocation.getLongitude());
+        }else{
+            datareceiver.getTourData(userLanguage,
+                    currentUserLocation.getLatitude(),
+                    currentUserLocation.getLongitude());
         }
 
     }

@@ -55,7 +55,16 @@ public class Const {
         public static final int SHOPPING = 38;
         public static final int FOOD = 39;
         public static final int COURSE = 25;
-        public static final int ALL = 1000;
+        public static final int ALL = 10000;
+        /*타국가*/
+        public static final int OTOUR = 76;
+        public static final int OCOULTURE = 68;
+        public static final int OCANIVAL = 85;
+        public static final int OREPORTS = 75;
+        public static final int OINN = 80;
+        public static final int OSHOPPING = 79;
+        public static final int OFOOD = 82;
+        public static final int OTANS = 77;
     }
     public static class AR{
         public final static int REQUEST_CAMERA_PERMISSIONS_CODE = 11;

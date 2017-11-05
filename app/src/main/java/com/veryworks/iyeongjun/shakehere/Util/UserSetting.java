@@ -10,7 +10,7 @@ public class UserSetting {
 
     public static boolean isCanUseSensor = true;
     public static String userLanguage = Const.Lang.KOREAN;
-    public static String usercontentType;
+    public static int usercontentType = 0;
 
 
 }

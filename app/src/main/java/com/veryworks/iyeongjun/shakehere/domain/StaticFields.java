@@ -6,4 +6,5 @@ package com.veryworks.iyeongjun.shakehere.domain;
 
 public class StaticFields {
     public static int currentPageNo = 1;
+    public static boolean isFirstTime = true;
 }

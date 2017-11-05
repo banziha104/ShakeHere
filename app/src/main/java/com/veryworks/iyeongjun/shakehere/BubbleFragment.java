@@ -43,6 +43,7 @@ import static com.veryworks.iyeongjun.shakehere.domain.StaticData.drawables;
  */
 public class BubbleFragment extends Fragment implements PagerActivity.PickerControl{
 
+    int page;
     TypedArray colors;
     static BubblePicker bubblePicker;
     Unbinder unbinder;
@@ -84,12 +85,14 @@ public class BubbleFragment extends Fragment implements PagerActivity.PickerCont
     }
 
     private void setBubble() {
+        if(datas.size() > 20) page = 20;
+        else page = datas.size();
         bubblePicker.setBubbleSize(3);
         bubblePicker.setCenterImmediately(true);
         bubblePicker.setAdapter(new BubblePickerAdapter() {
             @Override
             public int getTotalCount() {
-                return 20;
+                return page;
             }
 
             @NotNull
@@ -97,6 +100,9 @@ public class BubbleFragment extends Fragment implements PagerActivity.PickerCont
             public PickerItem getItem(int position) {
                 PickerItem item = new PickerItem();
                 item.setTitle(datas.get(position).getTitle());
+                Log.d("Color",datas.get(position).getTitle()+
+                        getMyColor(convertGra(datas.get(position).getContenttypeid()))+
+                        getMyColor(convertColor(datas.get(position).getContenttypeid()))+"");
                 item.setGradient(new BubbleGradient(
                         getMyColor(convertGra(datas.get(position).getContenttypeid())),
                         getMyColor(convertColor(datas.get(position).getContenttypeid())),

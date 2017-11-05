@@ -44,6 +44,7 @@ public class AROverlayView extends View implements ARActivity.CheckView, ARActiv
     int width = dm.widthPixels;
     int height = dm.heightPixels;
     int curPos = 0;
+    int page;
     boolean[] arr;
     boolean[] temparr;
     Timer timer;
@@ -165,7 +166,9 @@ public class AROverlayView extends View implements ARActivity.CheckView, ARActiv
     }
     private void setArPoints(ArrayList<Item> data){
         Random random = new Random();
-        for(int i = 0 ; i < 20 ; i ++){
+        if(datas.size() > 20) page = 20;
+        else page = datas.size();
+        for(int i = 0 ; i < page ; i ++){
             int index = i+curPos;
             Item item = data.get(index);
             Log.d("A",index+"");

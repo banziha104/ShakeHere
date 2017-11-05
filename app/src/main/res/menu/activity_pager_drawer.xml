@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_tour"
-            android:icon="@drawable/tour_icon"
-            android:title="관광" />
-        <item
-            android:id="@+id/nav_culture"
-            android:icon="@drawable/culture_icon"
-            android:title="문화시설" />
-        <item
-            android:id="@+id/nav_food"
-            android:icon="@drawable/food_icon"
-            android:title="음식점" />
-        <item
-            android:id="@+id/nav_reports"
-            android:icon="@drawable/reports_icon"
-            android:title="레포츠" />
-        <item
-            android:id="@+id/nav_inn"
-            android:icon="@drawable/inn_icon"
-            android:title="숙박" />
-        <item
-            android:id="@+id/nav_shopping"
-            android:icon="@drawable/shopping_icon"
-            android:title="쇼핑" />
-        <item
-            android:id="@+id/nav_canival"
-            android:icon="@drawable/canival_icon"
-            android:title="행사공연" />
-        <item
-            android:id="@+id/nav_courese"
-            android:icon="@drawable/course_icon"
-            android:title="코스" />
-    </group>
+    <!--<group android:checkableBehavior="single">-->
+        <!--<item-->
+            <!--android:id="@+id/nav_tour"-->
+            <!--android:icon="@drawable/tour_icon"-->
+            <!--android:title="관광" />-->
+        <!--<item-->
+            <!--android:id="@+id/nav_culture"-->
+            <!--android:icon="@drawable/culture_icon"-->
+            <!--android:title="문화시설" />-->
+        <!--<item-->
+            <!--android:id="@+id/nav_food"-->
+            <!--android:icon="@drawable/food_icon"-->
+            <!--android:title="음식점" />-->
+        <!--<item-->
+            <!--android:id="@+id/nav_reports"-->
+            <!--android:icon="@drawable/reports_icon"-->
+            <!--android:title="레포츠" />-->
+        <!--<item-->
+            <!--android:id="@+id/nav_inn"-->
+            <!--android:icon="@drawable/inn_icon"-->
+            <!--android:title="숙박" />-->
+        <!--<item-->
+            <!--android:id="@+id/nav_shopping"-->
+            <!--android:icon="@drawable/shopping_icon"-->
+            <!--android:title="쇼핑" />-->
+        <!--<item-->
+            <!--android:id="@+id/nav_canival"-->
+            <!--android:icon="@drawable/canival_icon"-->
+            <!--android:title="행사공연" />-->
+        <!--<item-->
+            <!--android:id="@+id/nav_courese"-->
+            <!--android:icon="@drawable/course_icon"-->
+            <!--android:title="코스" />-->
+    <!--</group>-->
 
     <item android:title="Langague">
         <menu>

@@ -105,7 +105,7 @@ public class RecylerAdapter extends RecyclerView.Adapter<RecylerAdapter.ViewHold
         }
         private void setTxtSetting(){
             reTxtTitle.setTextColor(Color.WHITE);
-
+            reTxtTitle.setTextSize(10.0f);
 //            txtAdress.setTextSize(9.0f);
 //            txtType.setTextSize(10.0f);
 //            txtCall.setTextSize(10.0f);

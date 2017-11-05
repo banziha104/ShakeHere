@@ -28,6 +28,8 @@ import retrofit2.Retrofit;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
+import static com.veryworks.iyeongjun.shakehere.domain.StaticFields.isFirstTime;
+
 /**
  * Created by iyeongjun on 2017. 9. 17..
  */
@@ -93,11 +95,14 @@ public class UserLocation {
             String tempLocation = location.getLatitude()+","+location.getLongitude();
             reverseGeocoder(tempLocation);
             Toast.makeText(context,"위치 수신 완료, 데이터를 수신합니다",Toast.LENGTH_LONG).show();
-            DataReceiver dataReceiver = new DataReceiver(context);
-            dataReceiver.getTourDataDefault(Const.Lang.KOREAN,
-                    currentUserLocation.getLatitude(),
-                    currentUserLocation.getLongitude()
-                    );
+            if (isFirstTime) {
+                DataReceiver dataReceiver = new DataReceiver(context);
+                dataReceiver.getTourDataDefault(Const.Lang.KOREAN,
+                        currentUserLocation.getLatitude(),
+                        currentUserLocation.getLongitude()
+                        );
+                isFirstTime = false;
+            }
 
         }
 

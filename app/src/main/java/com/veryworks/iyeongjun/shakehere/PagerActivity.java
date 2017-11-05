@@ -116,6 +116,7 @@ public class PagerActivity extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setItemIconTintList(null);
         navigationView.setNavigationItemSelectedListener(this);
 
         setView();
@@ -160,15 +161,15 @@ public class PagerActivity extends AppCompatActivity
         Intent intent = new Intent(PagerActivity.this, SplashActivity.class);
         String lang = "";
         int type = 0;
-        if (id == R.id.nav_tour) type = Const.ContentType.TOUR;
-        else if (id == R.id.nav_culture) type = Const.ContentType.COULTURE;
-        else if (id == R.id.nav_food) type = Const.ContentType.FOOD;
-        else if (id == R.id.nav_reports) type = Const.ContentType.REPORTS;
-        else if (id == R.id.nav_inn) type = Const.ContentType.INN;
-        else if (id == R.id.nav_shopping) type = Const.ContentType.SHOPPING;
-        else if (id == R.id.nav_canival) type = Const.ContentType.CANIVAL;
-        else if (id == R.id.nav_courese) type = Const.ContentType.COURSE;
-        else if (id == R.id.nav_kor) lang = Const.Lang.KOREAN;
+//        if (id == R.id.nav_tour) type = Const.ContentType.TOUR;
+//        else if (id == R.id.nav_culture) type = Const.ContentType.COULTURE;
+//        else if (id == R.id.nav_food) type = Const.ContentType.FOOD;
+//        else if (id == R.id.nav_reports) type = Const.ContentType.REPORTS;
+//        else if (id == R.id.nav_inn) type = Const.ContentType.INN;
+//        else if (id == R.id.nav_shopping) type = Const.ContentType.SHOPPING;
+//        else if (id == R.id.nav_canival) type = Const.ContentType.CANIVAL;
+//        else if (id == R.id.nav_courese) type = Const.ContentType.COURSE;
+        if (id == R.id.nav_kor) lang = Const.Lang.KOREAN;
         else if (id == R.id.nav_jpn) lang = Const.Lang.JAPAN;
         else if (id == R.id.nav_chn) lang = Const.Lang.CHINA_BUN;
         else if (id == R.id.nav_Eng) lang = Const.Lang.ENGLISH;
@@ -251,7 +252,6 @@ public class PagerActivity extends AppCompatActivity
         Log.d("Service","start");
         startService(intent);
     }
-
     interface PickerControl{
         void bubblePause();
         void bubbleResume();
