@@ -16,28 +16,29 @@
         android:hardwareAccelerated="true">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDI2UIyMCRzIVMxecg0ZJbNIbh7VYomeAs"/>
+            android:value="AIzaSyCXHmSY-KVXCkaPvyL9PVQUbi2RBBg4JY4"/>
+            <!--android:value="AIzaSyDI2UIyMCRzIVMxecg0ZJbNIbh7VYomeAs"/>-->
         <activity
-            android:name=".PagerActivity"
+            android:name="com.veryworks.iyeongjun.shakehere.PagerActivity"
             android:label="@string/title_activity_pager"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".DetailActivity" />
-        <activity android:name=".SplashActivity">
+        <activity android:name="com.veryworks.iyeongjun.shakehere.DetailActivity" />
+        <activity android:name="com.veryworks.iyeongjun.shakehere.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ARActivity"></activity>
+        <activity android:name="com.veryworks.iyeongjun.shakehere.ARActivity"></activity>
 
         <service
-            android:name=".ShakeDetectService"
+            android:name="com.veryworks.iyeongjun.shakehere.ShakeDetectService"
             android:enabled="true"
             android:exported="true" />
         <receiver
-        android:name=".DisplayReceiver"
+        android:name="com.veryworks.iyeongjun.shakehere.DisplayReceiver"
         android:enabled="true"
         android:exported="true">
         <intent-filter>

@@ -3,14 +3,8 @@ package com.veryworks.iyeongjun.shakehere;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.design.internal.NavigationMenuView;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
@@ -23,15 +17,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 import com.tsengvn.typekit.Typekit;
 import com.tsengvn.typekit.TypekitContextWrapper;
-import com.veryworks.iyeongjun.shakehere.Util.PermissionControl;
 import com.veryworks.iyeongjun.shakehere.domain.Const;
-import com.veryworks.iyeongjun.shakehere.domain.DataReceiver;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +30,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.veryworks.iyeongjun.shakehere.BubbleFragment.bubblePicker;
-import static com.veryworks.iyeongjun.shakehere.Util.PermissionControl.checkVersion;
 import static com.veryworks.iyeongjun.shakehere.Util.UserLocation.currentUserLocation;
 import static com.veryworks.iyeongjun.shakehere.domain.StaticFields.isFirstTime;
 import static com.veryworks.iyeongjun.shakehere.domain.StaticFields.isInitToogle;

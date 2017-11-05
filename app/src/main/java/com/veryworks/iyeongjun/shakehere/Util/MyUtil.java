@@ -1,7 +1,5 @@
 package com.veryworks.iyeongjun.shakehere.Util;
 
-import android.util.Log;
-
 import static com.veryworks.iyeongjun.shakehere.domain.Const.ContentType.*;
 import static com.veryworks.iyeongjun.shakehere.domain.StaticData.myIcon;
 import static com.veryworks.iyeongjun.shakehere.domain.StaticData.myPin;
@@ -38,7 +36,7 @@ public class MyUtil {
         else if(type == INN || type ==OINN) result = myIcon[4];
         else if(type == SHOPPING || type ==OSHOPPING) result = myIcon[5];
         else if(type == CANIVAL || type ==OCANIVAL) result = myIcon[6];
-        else if(type == COURSE || type ==OTANS ) result = myIcon[7];
+        else result = myIcon[7];
         return result;
     }
     public static int convertPin(String strType){
@@ -51,7 +49,7 @@ public class MyUtil {
         else if(type == INN || type ==OINN) result = myPin[4];
         else if(type == SHOPPING || type ==OSHOPPING) result = myPin[5];
         else if(type == CANIVAL || type ==OCANIVAL) result = myPin[6];
-        else if(type == COURSE || type ==OTANS) result = myPin[7];
+        else result = myPin[7];
         return result;
     }
     public static int convertColor(String strType){
@@ -64,7 +62,7 @@ public class MyUtil {
         else if(type == INN || type ==OINN) result = pasColor[4];
         else if(type == SHOPPING || type == OSHOPPING) result = pasColor[5];
         else if(type == CANIVAL || type == OCANIVAL) result = pasColor[6];
-        else if(type == COURSE || type ==OTANS) result = pasColor[7];
+        else result = pasColor[7];
         return result;
     }
     public static int convertGra(String strType){
@@ -77,7 +75,7 @@ public class MyUtil {
         else if(type == INN || type ==OINN) result = pasGrColor[4];
         else if(type == SHOPPING || type ==OSHOPPING) result = pasGrColor[5];
         else if(type == CANIVAL || type ==OCANIVAL) result = pasGrColor[6];
-        else if(type == COURSE || type == OTANS) result = pasGrColor[7];
+        else  result = pasGrColor[7];
         return result;
     }
 }

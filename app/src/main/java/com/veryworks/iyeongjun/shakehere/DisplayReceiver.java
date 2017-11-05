@@ -6,11 +6,9 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.veryworks.iyeongjun.shakehere.domain.Const;
-import com.veryworks.iyeongjun.shakehere.domain.Const;
 
 import static com.veryworks.iyeongjun.shakehere.StaticStatus.isServiceRan;
 import static com.veryworks.iyeongjun.shakehere.StaticStatus.ScreenStatus;
-import static com.veryworks.iyeongjun.shakehere.StaticStatus.isServiceRan;
 
 
 public class DisplayReceiver extends BroadcastReceiver {

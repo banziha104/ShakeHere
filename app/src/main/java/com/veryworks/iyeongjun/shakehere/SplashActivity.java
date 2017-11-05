@@ -1,6 +1,5 @@
 package com.veryworks.iyeongjun.shakehere;
 
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
@@ -63,7 +62,7 @@ public class SplashActivity extends AppCompatActivity implements DataReceiver.Co
         if (intent.getBooleanExtra("isChange", false)) {
             Log.d("resume","inresumt");
             splashImg.setImageResource(R.drawable.reload);
-            Toast.makeText(this, "Data Change", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Data Changed", Toast.LENGTH_SHORT).show();
             String lang = intent.getStringExtra("lang");
             int type = intent.getIntExtra("type",0);
             changeData(lang, type);

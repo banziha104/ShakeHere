@@ -1,14 +1,7 @@
 package com.veryworks.iyeongjun.shakehere.domain;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.util.Log;
-import android.widget.Toast;
-
-import com.veryworks.iyeongjun.shakehere.Util.UserLocation;
-
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -20,7 +13,6 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 import static com.veryworks.iyeongjun.shakehere.domain.StaticData.datas;
-import static com.veryworks.iyeongjun.shakehere.domain.StaticData.drawables;
 import static com.veryworks.iyeongjun.shakehere.domain.StaticFields.currentPageNo;
 
 /**

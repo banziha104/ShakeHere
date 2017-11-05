@@ -1,6 +1,5 @@
 package com.veryworks.iyeongjun.shakehere.domain;
 
-import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 
 import com.veryworks.iyeongjun.shakehere.R;
