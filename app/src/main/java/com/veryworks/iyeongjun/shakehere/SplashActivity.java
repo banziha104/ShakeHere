@@ -1,5 +1,6 @@
 package com.veryworks.iyeongjun.shakehere;
 
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
@@ -26,10 +27,13 @@ import static com.veryworks.iyeongjun.shakehere.Util.UserLocation.currentUserLoc
 import static com.veryworks.iyeongjun.shakehere.Util.UserSetting.userLanguage;
 import static com.veryworks.iyeongjun.shakehere.Util.UserSetting.usercontentType;
 import static com.veryworks.iyeongjun.shakehere.domain.StaticData.pasColor;
+import static com.veryworks.iyeongjun.shakehere.domain.StaticFields.isInitToogle;
+
 public class SplashActivity extends AppCompatActivity implements DataReceiver.CompleteData
         , PermissionControl.CallBack {
     boolean isOnce = false;
     boolean isInit = false;
+    Intent intent2;
     DataReceiver dataReceiver;
     @BindView(R.id.splashImg)
     ImageView splashImg;
@@ -49,6 +53,7 @@ public class SplashActivity extends AppCompatActivity implements DataReceiver.Co
         ButterKnife.bind(this);
         splashImg.setImageResource(R.drawable.splash);
         Typekit.getInstance().addNormal(Typekit.createFromAsset(this, "myfont.otf"));
+        startShakeDetect();
     }
 
     @Override
@@ -62,6 +67,8 @@ public class SplashActivity extends AppCompatActivity implements DataReceiver.Co
             String lang = intent.getStringExtra("lang");
             int type = intent.getIntExtra("type",0);
             changeData(lang, type);
+        }else{
+            isInitToogle = true;
         }
     }
 
@@ -119,5 +126,10 @@ public class SplashActivity extends AppCompatActivity implements DataReceiver.Co
         pasColor = new int[]{
 
         };
+    }
+    private void startShakeDetect() {
+        intent2 = new Intent(SplashActivity.this, ShakeDetectService.class);
+        Log.d("Service","start");
+        startService(intent2);
     }
 }

@@ -42,6 +42,7 @@ import butterknife.ButterKnife;
 import static com.veryworks.iyeongjun.shakehere.BubbleFragment.bubblePicker;
 import static com.veryworks.iyeongjun.shakehere.Util.PermissionControl.checkVersion;
 import static com.veryworks.iyeongjun.shakehere.Util.UserLocation.currentUserLocation;
+import static com.veryworks.iyeongjun.shakehere.domain.StaticFields.isInitToogle;
 
 public class PagerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -72,10 +73,10 @@ public class PagerActivity extends AppCompatActivity
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_pager);
+        isInitToogle = false;
         ButterKnife.bind(this);
         Typekit.getInstance().addNormal(Typekit.createFromAsset(this, "myfont.otf"));
 
-        startShakeDetect();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
@@ -247,11 +248,7 @@ public class PagerActivity extends AppCompatActivity
         super.attachBaseContext(TypekitContextWrapper.wrap(newBase));
     }
 
-    private void startShakeDetect() {
-        Intent intent = new Intent(PagerActivity.this, ShakeDetectService.class);
-        Log.d("Service","start");
-        startService(intent);
-    }
+
     interface PickerControl{
         void bubblePause();
         void bubbleResume();

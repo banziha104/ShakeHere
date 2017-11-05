@@ -39,10 +39,11 @@ public class ShakeDetectService extends Service implements DisplayReceiver.Shake
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         if(intent == null) addDisplayReceiver();
-        startForeground(1,new Notification());
+//        stopForeground(true);
+        startForeground(1000,new Notification());
         isServiceRan = true;
         Log.d(TAG,"ServiceOnStartCommand");
-        return START_NOT_STICKY;
+        return START_STICKY;
     }
 
     @Override
