@@ -92,6 +92,7 @@ public class UserLocation {
             Log.d("LOCATION Confirm", location.getLatitude()+" / "+location.getLongitude()+" / " +location.getAccuracy() );
             String tempLocation = location.getLatitude()+","+location.getLongitude();
             reverseGeocoder(tempLocation);
+            Toast.makeText(context,"위치 수신 완료, 데이터를 수신합니다",Toast.LENGTH_LONG).show();
             DataReceiver dataReceiver = new DataReceiver(context);
             dataReceiver.getTourDataDefault(Const.Lang.KOREAN,
                     currentUserLocation.getLatitude(),

@@ -43,7 +43,7 @@ public class AROverlayView extends View implements ARActivity.CheckView, ARActiv
     private DisplayMetrics dm = getResources().getDisplayMetrics();
     int width = dm.widthPixels;
     int height = dm.heightPixels;
-    int curPos = 1;
+    int curPos = 0;
     boolean[] arr;
     boolean[] temparr;
     Timer timer;

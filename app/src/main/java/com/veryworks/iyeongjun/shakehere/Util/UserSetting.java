@@ -7,23 +7,10 @@ import com.veryworks.iyeongjun.shakehere.domain.Const;
  */
 
 public class UserSetting {
-    private boolean isCanUseSensor = true;
-    private String userLanguage = Const.Lang.KOREAN;
+
+    public static boolean isCanUseSensor = true;
+    public static String userLanguage = Const.Lang.KOREAN;
+    public static String usercontentType;
 
 
-    public boolean isCanUseSensor() {
-        return isCanUseSensor;
-    }
-
-    public void setCanUseSensor(boolean canUseSensor) {
-        isCanUseSensor = canUseSensor;
-    }
-
-    public String getUserLanguage() {
-        return userLanguage;
-    }
-
-    public void setUserLanguage(String userLanguage) {
-        this.userLanguage = userLanguage;
-    }
 }

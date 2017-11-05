@@ -84,7 +84,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback{
                 .position(new LatLng(point.get(i).getLat(), point.get(i).getLon()))
                 .title(point.get(i).getTitle())
                 .icon(BitmapDescriptorFactory.fromResource(point.get(i).getDrawble()));
-        Log.d("Marker",point.get(i).getDrawble()+"/"+datas.get(i).getContenttypeid()+"/"+datas.get(i).getTitle());
         return markerOptions;
     }
     @Override

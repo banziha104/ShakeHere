@@ -181,7 +181,9 @@ public class PagerActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         intent.putExtra("type",type);
         intent.putExtra("lang",lang);
+        intent.putExtra("isChange",true);
         startActivity(intent);
+        finish();
 
         return true;
     }

@@ -85,8 +85,12 @@ public class RecylerAdapter extends RecyclerView.Adapter<RecylerAdapter.ViewHold
             ButterKnife.bind(this,itemView);
             setTxtSetting();
         }
-        public void setImage(Item item){
-            Picasso.with(context).load(item.getFirstimage()).into(roundedImageView);
+        public void setImage(Item item) {
+            if (item.getFirstimage() == null) {
+                Picasso.with(context).load(R.drawable.default_image).into(roundedImageView);
+            } else {
+                Picasso.with(context).load(item.getFirstimage()).into(roundedImageView);
+            }
             Log.d("image",convertType(item.getContenttypeid())+"");
         }
         public void setIcon(Item item){
