@@ -95,8 +95,7 @@ public class UserLocation {
             Log.d("LOCATION Confirm", location.getLatitude()+" / "+location.getLongitude()+" / " +location.getAccuracy() );
             String tempLocation = location.getLatitude()+","+location.getLongitude();
             reverseGeocoder(tempLocation);
-            Toast.makeText(context,"위치 수신 완료, 데이터를 수신합니다",Toast.LENGTH_LONG).show();
-            Log.d("LOCATION",isFirstTime+"");
+            Log.d("LOCATION",isFirstTime+""+isInitToogle);
             if (isFirstTime || isInitToogle) {
                 Log.d("LOCATION","go data receive ");
                 DataReceiver dataReceiver = new DataReceiver(context);

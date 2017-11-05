@@ -42,6 +42,7 @@ import butterknife.ButterKnife;
 import static com.veryworks.iyeongjun.shakehere.BubbleFragment.bubblePicker;
 import static com.veryworks.iyeongjun.shakehere.Util.PermissionControl.checkVersion;
 import static com.veryworks.iyeongjun.shakehere.Util.UserLocation.currentUserLocation;
+import static com.veryworks.iyeongjun.shakehere.domain.StaticFields.isFirstTime;
 import static com.veryworks.iyeongjun.shakehere.domain.StaticFields.isInitToogle;
 
 public class PagerActivity extends AppCompatActivity
@@ -74,6 +75,7 @@ public class PagerActivity extends AppCompatActivity
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_pager);
         isInitToogle = false;
+        isFirstTime = false;
         ButterKnife.bind(this);
         Typekit.getInstance().addNormal(Typekit.createFromAsset(this, "myfont.otf"));
 
@@ -110,7 +112,6 @@ public class PagerActivity extends AppCompatActivity
             @Override
             public void onConfigurationChanged(Configuration newConfig) {
                 super.onConfigurationChanged(newConfig);
-                Toast.makeText(PagerActivity.this, "change", Toast.LENGTH_SHORT).show();
             }
         };
         drawer.setDrawerListener(toggle);

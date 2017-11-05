@@ -36,7 +36,6 @@ public class DataReceiver {
     }
 
     public void getTourData(String lang , double lat, double lon){
-        Toast.makeText(context, "데이터 수신중", Toast.LENGTH_SHORT).show();
         retrofit = new Retrofit.Builder()
                 .baseUrl("http://api.visitkorea.or.kr")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -67,7 +66,6 @@ public class DataReceiver {
     }
 
     public void getTourDataWithType(String lang, int contentType, double lat, double lon){
-        Toast.makeText(context, "데이터 수신중", Toast.LENGTH_SHORT).show();
         retrofit = new Retrofit.Builder()
                 .baseUrl("http://api.visitkorea.or.kr")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -100,7 +98,6 @@ public class DataReceiver {
 
     public void getTourDataDefault(String lang, double lat, double lon){
         Log.d("LOCATION","getTourData");
-        Toast.makeText(context, "데이터 수신중", Toast.LENGTH_SHORT).show();
 
         retrofit = new Retrofit.Builder()
                 .baseUrl("http://api.visitkorea.or.kr")
@@ -176,7 +173,6 @@ public class DataReceiver {
 
     private void ifSeccess(Response<TourData> response){
         Item[] items = response.body().getResponse().getBody().getItems().getItem();
-        Toast.makeText(context, "데이터 수신 완료", Toast.LENGTH_SHORT).show();
         if(datas != null) datas.clear();
         for(int i = 0 ; i < items.length ; i ++){
             datas.add(items[i]);
@@ -197,7 +193,6 @@ public class DataReceiver {
             Log.d("Callback","callback");
         }else{
             Log.d("Callback","not callback");
-            Toast.makeText(context, "not callback", Toast.LENGTH_SHORT).show();
         }
     }
 
