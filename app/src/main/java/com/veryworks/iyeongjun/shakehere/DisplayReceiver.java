@@ -42,7 +42,7 @@ public class DisplayReceiver extends BroadcastReceiver {
         ScreenStatus = status;
         Log.d(TAG,status);
     }
-    //a
+    //as
     public void setShakeServiceContext(Context context){
         shakeController = (ShakeController)context;
     }
