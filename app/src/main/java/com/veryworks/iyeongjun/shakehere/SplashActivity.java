@@ -44,11 +44,6 @@ public class SplashActivity extends AppCompatActivity implements DataReceiver.Co
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
         PermissionControl.checkVersion(this);
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//            checkVersion(this);
-//        } else {
-//            init();
-//        }
         ButterKnife.bind(this);
         splashImg.setImageResource(R.drawable.splash);
         Typekit.getInstance().addNormal(Typekit.createFromAsset(this, "myfont.otf"));
@@ -126,6 +121,7 @@ public class SplashActivity extends AppCompatActivity implements DataReceiver.Co
 
         };
     }
+
     private void startShakeDetect() {
         intent2 = new Intent(SplashActivity.this, ShakeDetectService.class);
         Log.d("Service","start");

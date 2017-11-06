@@ -120,6 +120,7 @@ public class PagerActivity extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
             bubbleFragment.onPause();
         } else {
+            super.onBackPressed();
         }
     }
 

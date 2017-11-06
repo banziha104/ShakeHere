@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        release {
+            keyAlias 'key0'
+            keyPassword '!dl38349687'
+            storeFile file('/Users/iyeongjun/Downloads/ShakeHere/key.jks')
+            storePassword '!dl38349687'
+        }
+    }
     compileSdkVersion 26
     buildToolsVersion "26.0.0"
     defaultConfig {
@@ -13,6 +21,8 @@ android {
     }
     buildTypes {
         release {
+            signingConfig signingConfigs.release
+            buildConfigField "String", "MYURL", "\"http://real.seoul.go.kr\""
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -25,9 +35,13 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     // 글라이드
+
     //글라이드 트랜스폼
+
     //레트로핏
+
     //Gson 컨버터
+
     //Gson
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.tsengvn:Typekit:1.0.0'
